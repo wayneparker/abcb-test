@@ -6,11 +6,26 @@
 //
 //## Fonts
 
+$font_sans: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+$font_serif: 'Georgia', 'Constantia', 'Times', 'Times New Roman', serif;
+
 
 //
 //## Color Palette
+
+$color_body: #f0f0f0;
+
+$color_header-bg: #e2e2e2;
+$color_header: #f0f0f0;
+$color_text-primary: black;
+$color_text-secondary: #676767;
+
+$color_main-bg: $color_body;
+$color_main: white;
 
 
 //
 //## Responsive Breakpoints
 
+$screen_mobile-max: 720px;
+$screen_desktop-max: 1024px;
