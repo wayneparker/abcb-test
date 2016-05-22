@@ -14,7 +14,6 @@ var changed =      require('gulp-changed');
 var concat =       require('gulp-concat');
 var flatten =      require('gulp-flatten');
 var git =          require('gulp-git');
-var notify =       require('gulp-notify');
 var rimraf =       require('gulp-rimraf');
 
 // Styles
@@ -62,8 +61,7 @@ gulp.task('files', function () {
 	return gulp.src(sourcePath + filePath + '**/*')
 		.pipe(changed(devPath))
 		//.pipe(flatten()) // Disable for this project
-		.pipe(gulp.dest(devPath + filePath))
-		.pipe(notify({message: 'Files Updated'}));
+		.pipe(gulp.dest(devPath + filePath));
 });
 
 
@@ -71,8 +69,7 @@ gulp.task('files', function () {
 gulp.task('fonts', function () {
 	return gulp.src(sourcePath + fontPath + '**/*')
 		//.pipe(flatten()) // Disable for this project
-		.pipe(gulp.dest(devPath + fontPath))
-		.pipe(notify({message: 'Fonts Updated'}));
+		.pipe(gulp.dest(devPath + fontPath));
 });
 
 
@@ -80,8 +77,7 @@ gulp.task('fonts', function () {
 gulp.task('images', function () {
 	return gulp.src(sourcePath + imagePath + '**/*')
 		//.pipe(flatten()) // Disable for this project
-		.pipe(gulp.dest(devPath + imagePath))
-		.pipe(notify({message: 'Images Updated'}));
+		.pipe(gulp.dest(devPath + imagePath));
 });
 
 
@@ -89,15 +85,12 @@ gulp.task('images', function () {
 gulp.task('pages', function () {
 	return gulp.src(sourcePath + '**/*.html')
 		//.pipe(flatten()) // Disable for this project
-		.pipe(gulp.dest(devPath))
-		.pipe(notify({message: 'Pages Updated'}));
+		.pipe(gulp.dest(devPath));
 });
 
 
 // Static - Copy all static assets to dev folder
-gulp.task('static', ['files', 'fonts', 'images', 'pages'], function () {
-	return;
-});
+gulp.task('static', ['files', 'fonts', 'images', 'pages']);
 
 
 //## Scripts
@@ -108,8 +101,7 @@ gulp.task('scripts-clean', function() {
 		devPath + scriptPath + '**/*.js',
 		devPath + scriptPath + '**/*.js.map'
 	])
-		.pipe(rimraf())
-		.pipe(notify({message: 'Scripts Cleaned'}));
+		.pipe(rimraf());
 });
 
 // JSHint - Lints configuration JSON and project JS.
@@ -128,21 +120,18 @@ gulp.task('jshint', function () {
 gulp.task('scripts-vendor', function () {
 	return gulp.src(vendorPath + '**/*.js')
 		.pipe(sourcemaps.init())
-		//.pipe(uglify()) // Disable for development
 		.pipe(concat('vendor.min.js'))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(devPath + scriptPath));
 });
 
 // App scripts - Concat and deploy project scripts to development
-gulp.task('scripts', ['jshint', 'scripts-clean', 'scripts-vendor'], function () {
+gulp.task('scripts', ['jshint', 'scripts-vendor'], function () {
 	return gulp.src( sourcePath + scriptPath + '**/*.js' )
 		.pipe(sourcemaps.init())
-		//.pipe(uglify()) // Disable for development
 		.pipe(concat('app.min.js'))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(devPath + scriptPath))
-		.pipe(notify({message: 'App Scripts Updated'}));
+		.pipe(gulp.dest(devPath + scriptPath));
 });
 
 
@@ -154,26 +143,20 @@ gulp.task('styles-clean', function() {
 		devPath + stylePath + '**/*.css',
 		devPath + stylePath + '**/*.css.map'
 	])
-		.pipe(rimraf())
-		.pipe(notify({message: 'Styles Cleaned'}));
+		.pipe(rimraf());
 });
 
 // Build Styles - Compiles, combines, and optimizes Bower CSS and project CSS.
-gulp.task('styles', ['styles-clean'], function () {
+gulp.task('styles', function () {
 	return gulp.src([
-		sourcePath + 'sass/**/*.sass',
-		sourcePath + 'sass/**/*.scss'
+		sourcePath + 'sass/**/*'
 	])
 		.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
+		.pipe(sass({ style: 'compressed' }))
+		.pipe(autoprefixer('last 2 versions'))
 		.pipe(concat('styles.min.css'))
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(devPath + stylePath))
-		.pipe(notify({message: 'Styles Updated'}));
+		.pipe(gulp.dest(devPath + stylePath));
 });
 
 
@@ -188,8 +171,7 @@ gulp.task('dist-static', function () {
 		devPath + fontPath +  '**/*',
 		devPath + imagePath + '**/*'
 	])
-		.pipe(gulp.dest(distPath))
-		.pipe(notify({message: 'Static Assets Published'}));
+		.pipe(gulp.dest(distPath));
 });
 
 // Publish Scripts
@@ -201,8 +183,7 @@ gulp.task('dist-scripts', function () {
 		.pipe(sourcemaps.init())
 		.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(distPath + scriptPath))
-		.pipe(notify({message: 'Scripts Published'}));
+		.pipe(gulp.dest(distPath + scriptPath));
 });
 
 // Publish Styles
@@ -213,24 +194,22 @@ gulp.task('dist-styles', function () {
 		.pipe(sourcemaps.init())
 		.pipe(minifycss())
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(distPath + stylePath))
-		.pipe(notify({message: 'Styles Published'}));
+		.pipe(gulp.dest(distPath + stylePath));
 });
 
 //## Publish All to Dist
-gulp.task('dist', ['dist-static', 'dist-scripts', 'dist-styles'], function () {
-	return;
-});
+gulp.task('dist', ['dist-static', 'dist-scripts', 'dist-styles']);
 
 
 //## Watch - Run gulp tasks as source files are changed
 gulp.task('watch', function () {
-	gulp.watch([sourcePath +              '**/*.html'], ['pages']);
-	gulp.watch([sourcePath + filePath +   '**/*'],      ['files']);
-	gulp.watch([sourcePath + fontPath +   '**/*'],      ['fonts']);
-	gulp.watch([sourcePath + imagePath +  '**/*'],      ['images']);
-	gulp.watch([sourcePath + stylePath +  '**/*'],      ['styles']);
-	gulp.watch([sourcePath + scriptPath + '**/*'],      ['scripts']);
+	gulp.watch([sourcePath + '**/*.html'],          ['pages']);
+	gulp.watch([sourcePath + filePath + '**.*'],    ['files']);
+	gulp.watch([sourcePath + fontPath + '**.*'],    ['fonts']);
+	gulp.watch([sourcePath + imagePath + '**.*'],   ['images']);
+	gulp.watch([sourcePath + 'sass/**.*'],          ['styles']);
+	gulp.watch([sourcePath + scriptPath + '**.*'],  ['scripts']);
 });
 
-gulp.task('default', ['pages', 'files', 'images', 'styles', 'scripts']);
+
+gulp.task('default', ['pages', 'files', 'fonts', 'images', 'styles', 'scripts']);
