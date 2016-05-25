@@ -35,7 +35,7 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 
 * I set up source (`/src`), development (`/dev`) and production (`/dist`) folders. `gulp watch` is used to lint and process Sass and JavaScript (with sourcemaps, cos that's just how I roll), and to push `/src` assets to the correct folders. `gulp dist` minifies/uglifies CSS and JS, and pushes to the production folder, ready for deployment.
 
-* Although the comp shows only a fixed 800px width, it *is* 2016, so I made the page responsive. below 720px, the form and list are stacked verically; between 720px and 1024px, they're displayed side by side, as in the comp; above 1024px, the width is fixed and centered in the browser.
+* Although the comp shows only a fixed 800px width, it *is* 2016, so I made the page responsive. Below 720px, the form and list are stacked vertically; between 720px and 1024px, they're displayed side by side, as in the comp; above 1024px, the width is fixed and centered in the browser.
 
 * The only third party code I used was normalize.css, because I used it on *all* projects to make cross-browser rendering somewhat more sane.
 
@@ -44,3 +44,4 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 * I didn't write form validation code; it's simple enough, the built-in HTML 'required' attribute seems sufficient. 
 
 * Likewise, I didn't go as far as writing unit tests. Like the form validation, I might do it if I have some time to kill.
+
