@@ -380,9 +380,9 @@ html {
     margin: 0; }
 
 header section, main section {
-  width: 100%;
+  margin: 0 auto;
   max-width: 1024px;
-  margin: 0 auto; }
+  width: 100%; }
 
 header {
   background-color: #e2e2e2; }
@@ -397,8 +397,8 @@ header {
       font-weight: bold;
       margin-bottom: -3px; }
     header section p {
-      font: 18px "Arial", "Helvetica Neue", "Helvetica", sans-serif;
-      color: #676767; }
+      color: #676767;
+      font: 18px "Arial", "Helvetica Neue", "Helvetica", sans-serif; }
 
 main {
   background-color: #f0f0f0;
@@ -457,16 +457,16 @@ main {
   .task-tracker__list h2 {
     margin-left: 4px; }
   .task-tracker__list ul {
-    list-style: none;
-    margin-top: 38px;
     border: 4px solid #dedede;
     border-radius: 4px;
+    list-style: none;
+    margin-top: 38px;
     padding: 2px; }
     .task-tracker__list ul li {
       display: block;
-      vertical-align: middle;
       height: 39px;
-      padding: 13px 16px 0; }
+      padding: 13px 16px 0;
+      vertical-align: middle; }
       .task-tracker__list ul li:nth-child(even) {
         background-color: #ececec; }
       .task-tracker__list ul li:not(:last-child) {
@@ -477,9 +477,9 @@ main {
         font: 0.857em "Arial", "Helvetica Neue", "Helvetica", sans-serif;
         margin-left: 0.5em; }
       .task-tracker__list ul li .task-assigned {
-        font: 0.857em "Arial", "Helvetica Neue", "Helvetica", sans-serif;
-        font-weight: bold;
         display: inline-block;
-        float: right; }
+        float: right;
+        font: 0.857em "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+        font-weight: bold; }
 
 /*# sourceMappingURL=styles.min.css.map */

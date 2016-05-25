@@ -18,11 +18,11 @@
 
 html {
 	background-color: $color_body;
-	font: 14px $font_sans;
+	font: 14px $font_sans; // Base Font Size
 	line-height: 1.2;
 
 	& * {
-		// Additional element reset
+		// Additional element resets
 		box-sizing: border-box;
 		font-size: inherit;
 		font-weight: normal;
@@ -31,9 +31,9 @@ html {
 }
 
 %body__layout {
+	margin: 0 auto; // center horizontally
+	max-width: $screen_desktop-max; // fixed width on larger screens
 	width: 100%;
-	max-width: $screen_desktop-max;
-	margin: 0 auto;
 }
 
 $frame-width: 9px;
@@ -44,7 +44,7 @@ header {
 
 	section {
 		@extend %body__layout;
-		background-color: $color_body;
+		background-color: $color_header;
 		border: $frame-width solid $color_header-bg;
 		border-bottom: none;
 		height: 148px;
@@ -57,8 +57,8 @@ header {
 		}
 
 		p {
-			font: 18px $font_sans;
 			color: $color_text-secondary;
+			font: 18px $font_sans;
 		}
 	}
 }
@@ -145,24 +145,26 @@ $form__elem-bg: #ececec;
 	padding: $form__top-spacing 20px 20px 15px;
 
 	h2 {
-		margin-left: $form__list-frame; // Offset to line up with list content, not frame
+		margin-left: $form__list-frame; // Offset to line up with list content, not frame, per comp
 	}
 
 	ul {
-		list-style: none;
-		margin-top: 38px;
 		border: $form__list-frame solid $form__frame-color;
 		border-radius: $form__list-frame;
+		list-style: none;
+		margin-top: 38px;
 		padding: 2px;
 
 		li {
 			display: block;
-			vertical-align: middle;
 			height: 39px;
 			padding: 13px 16px 0;
+			vertical-align: middle;
+
 			&:nth-child(even) { // Alternating color bars
 				background-color: $form__elem-bg;
 			}
+
 			&:not(:last-child) {
 				border-bottom: 1px solid white;
 			}
@@ -170,15 +172,17 @@ $form__elem-bg: #ececec;
 			.task-name {
 				font: 1.0em $font_serif;
 			}
+
 			.task-date {
 				font: 0.857em $font_sans;
 				margin-left: 0.5em;
 			}
+
 			.task-assigned {
-				font: 0.857em $font_sans;
-				font-weight: bold;
 				display: inline-block;
 				float: right;
+				font: 0.857em $font_sans;
+				font-weight: bold;
 			}
 		}
 	}
