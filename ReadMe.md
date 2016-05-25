@@ -44,4 +44,3 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 * I didn't write form validation code; it's simple enough, the built-in HTML 'required' attribute seems sufficient. 
 
 * Likewise, I didn't go as far as writing unit tests. Like the form validation, I might do it if I have some time to kill.
-
