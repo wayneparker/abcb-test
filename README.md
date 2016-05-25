@@ -41,7 +41,7 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 
 * In order to write this as if it was a typical AJAX app (as it would be in the Real World), I wrote a quick 'n' dirty "emulator" to handle fake XMLHttpRequest calls locally. Modifying the app to use actual server data would be as simple as changing one call name. Easy peasy lemon squeezy. Just fer grins, I might update it to use Local Storage instead…
 
-* The code is pretty heavily comments, for your amusement. I also left in a bunch of console.log() statements from debugging; try the site with the console active, to see what's going on under the hood.
+* The code is pretty heavily commented, for your amusement, bemusement, hopefully not confusement, and perhaps enlightenment. I also left in a bunch of console.log() statements; try the site with the console active, to see what's going on under the hood in excruciating detail.
 
 * I didn't write form validation code; it's simple enough, the built-in HTML 'required' attribute seems sufficient. 
 
