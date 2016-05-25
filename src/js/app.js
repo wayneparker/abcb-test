@@ -9,23 +9,24 @@
 
 //## Initialize globals
 
-	var taskData = {};
-	var taskForm = document.querySelector('form.task-tracker__create');
-	var taskList = document.querySelector('ul.task-list');
+	var taskData = {}; // Local task data; will be populated with server data by loadJSON()
+	var taskForm = document.querySelector('form.task-tracker__create'); // Ref to task entry form
+	var taskList = document.querySelector('ul.task-list');              // Ref to task list
 
 
 	//
 	//## Main App
 
 	function taskTracker() {
-		loadJSON();                  //## Get JSON data from (fake) XMLHttpRequest
-		buildList(taskData);         //## Convert JSON data to HTML list
+		loadJSON();                //## Get JSON data from (fake) XMLHttpRequest
+		buildList(taskData);       //## Convert JSON data to HTML list
 		window.onsubmit = addTask; //## Set up event handler for form
+					console.log('Set-up complete, Task Tracker is now running!');
 	}
 
 
 	//
-	//## Get JSON data from (fake) XMLHttpRequest, store in local object
+	//## Get JSON data from (fake) XMLHttpRequest, store in local taskData object
 
 	function loadJSON() {
 
@@ -36,10 +37,10 @@
 			if (this.status >= 200 && this.status < 400) {
 				// Success!
 				taskData = JSON.parse(this.response);
-				console.log ('status: ' + this.statusText); // TESTING
-				console.log ('response: ' + this.response); // TESTING
-				console.log ('parsed response as Object:'); // TESTING
-				console.log (taskData); // TESTING
+							console.log ('status: ' + this.statusText); // TESTING
+							console.log ('response: ' + this.response); // TESTING
+							console.log ('parsed response as Object:'); // TESTING
+							console.log (taskData); // TESTING
 			} else {
 				window.alert('The server responded with an error. JSON data not loaded.');
 			}
@@ -62,6 +63,7 @@
 			li = createListItem(tasks[i].name, tasks[i].date, tasks[i].assigned);
 			ul.appendChild(li);
 		}
+					console.log('Finished appending initial tasks to list');
 	}
 
 
@@ -75,6 +77,8 @@
 			'<span class="task-date">' + dateStr + '</span>' +
 			'<span class="task-assigned">' + assigned + '</span>' +
 			'</li>\n';
+					console.log('Task DOM element created: ');
+					console.log(item);
 		return item;
 	}
 
@@ -96,14 +100,12 @@
 		};
 		// Prepend object element to taskData
 		taskData.unshift(newTask);
-		console.log('new task: ');
-		console.log(newTask);
+					console.log('New task added to taskData: ');
+					console.log(newTask);
 
 		// Prepend new DOM element to task list
 		var ul = taskList;
 		var li = createListItem(name, dateStr, assigned);
-		console.log('new list item: ');
-		console.log(li);
 		ul.insertBefore(li, ul.firstChild);
 
 		// Reset form
