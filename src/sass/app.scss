@@ -1,13 +1,13 @@
 /**
  * Test Exercise for Abercrombie.com
  *
- * Created by wayne on 5/22/16
+ * Created by Wayne Parker on 5/22/16
  */
 
 //
 //## Imports
 
-@import 'vendor';
+@import 'normalize';
 @import 'variables';
 //@import 'fonts';  // Not worth breaking out
 //@import 'colors'; // Not worth breaking out
@@ -132,6 +132,7 @@ $form__elem-bg: #ececec;
 		border: none;
 		border-radius: $form__element-radius;
 		color: white;
+		cursor: pointer;
 		font: 18px $font_serif;
 		margin-top: $form__top-spacing + 4px;
 		padding: 0.75em 1.0em;
@@ -171,8 +172,9 @@ $form__elem-bg: #ececec;
 			}
 			.task-date {
 				font: 0.857em $font_sans;
+				margin-left: 0.5em;
 			}
-			.task-assignee {
+			.task-assigned {
 				font: 0.857em $font_sans;
 				font-weight: bold;
 				display: inline-block;

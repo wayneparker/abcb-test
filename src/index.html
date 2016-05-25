@@ -20,56 +20,30 @@
 		<form class="task-tracker__create">
 			<h2>Create a Task</h2>
 			<label for="task-tracker__name">Task Name</label>
-			<input id="task-tracker__name" type="text">
+			<input id="task-tracker__name" type="text" required>
 			<label for="task-tracker__date">Date</label>
-			<input id="task-tracker__date" type="date">
-			<label for="task-tracker__assignee">Assigned To</label>
-			<input id="task-tracker__assignee" type="text">
-			<button type="submit">Submit</button>
+			<input id="task-tracker__date" type="date" required>
+			<label for="task-tracker__assigned">Assigned To</label>
+			<input id="task-tracker__assigned" type="text" required>
+			<button type="submit" id="submit">Submit</button>
 		</form>
 		<div class="task-tracker__list">
 			<h2>Existing Tasks</h2>
-			<ul>
+			<ul class="task-list">
+<!--
 				<li>
 					<span class="task-name">Task Name</span>
 					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
+					<span class="task-assigned">John Doe</span>
 				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
-				<li>
-					<span class="task-name">Task Name</span>
-					<span class="task-date">12/07/2012</span>
-					<span class="task-assignee">John Doe</span>
-				</li>
+-->
 			</ul>
 		</div>
 	</section>
+
+	<div id="test"></div>
+
 </main>
-<script src="js/vendor.min.js"></script>
 <script src="js/app.min.js"></script>
 </body>
 </html>
