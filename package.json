@@ -1,16 +1,16 @@
 {
-  "name": "abercrombie-test",
-  "description": "Test Exercise for Abercrombie.com",
-  "version": "0.0.1",
+  "name": "abcb-test",
+  "description": "Test Exercise for ABCB",
+  "version": "1.0.1",
   "author": "Wayne Parker",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wayneparker/abercrombie-test.git"
+    "url": "git+https://github.com/wayneparker/abcb-test.git"
   },
-  "homepage": "https://github.com/wayneparker/abercrombie-test#readme",
+  "homepage": "https://github.com/wayneparker/abcb-test#readme",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wayneparker/abercrombie-test/issues"
+    "url": "https://github.com/wayneparker/abcb-test/issues"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
