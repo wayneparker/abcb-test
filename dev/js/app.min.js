@@ -6,21 +6,21 @@
 
 	'use strict';
 
+	//
+	//## Initialize globals
 
-//## Initialize globals
-
-	var taskData = {}; // Local task data; will be populated with server data by loadJSON()
-	var taskForm = document.querySelector('form.task-tracker__create'); // Ref to task entry form
-	var taskList = document.querySelector('ul.task-list');              // Ref to task list
+	var taskData = {}; // Local task data; will be populated with “server” data by loadJSON()
+	var taskForm = document.querySelector('form.task-tracker__create'); // Reference to task entry form
+	var taskList = document.querySelector('ul.task-list');              // Reference to task list
 
 
 	//
-	//## Main App
+	//## Main App initialization
 
 	function taskTracker() {
-		loadJSON();                //## Get JSON data from (fake) XMLHttpRequest
-		buildList(taskData);       //## Convert JSON data to HTML list
-		window.onsubmit = addTask; //## Set up event handler for form
+		loadJSON();                // Get JSON data from (fake) XMLHttpRequest
+		buildList(taskData);       // Convert JSON data to DOM objects, render to HTML
+		window.onsubmit = addTask; // Set up event handler to process form when submitted
 					console.log('Set-up complete, Task Tracker is now running!');
 	}
 
@@ -59,10 +59,15 @@
 	function buildList(tasks) {
 		var ul = taskList;
 		var li;
+		// OK, docFrag is totally overkill for such a simple exercise, but hey, I'm a professional
+		var frag = document.createDocumentFragment();
+		// Create DOM elements for each task, append to documentFragment to avoid multiple DOM repaints
 		for (var i = 0; i < tasks.length; i++) {
 			li = createListItem(tasks[i].name, tasks[i].date, tasks[i].assigned);
-			ul.appendChild(li);
+			frag.appendChild(li);
 		}
+		// Update the DOM all at once, because performance!
+		ul.appendChild(frag);
 					console.log('Finished appending initial tasks to list');
 	}
 
@@ -81,6 +86,7 @@
 					console.log(item);
 		return item;
 	}
+
 
 	//
 	//## Form Submit, create and add new task to data and DOM
