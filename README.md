@@ -2,7 +2,7 @@
 
 Initial release • 2016-05-25
 
-I was tasked with this exercise in order to evaluate my web development skills. While I could have banged out something very simple, very quickly, I decided to treat this as an actual "real world" project, to demonstrate not just what I can do, but how I do it.
+I was tasked with this exercise in order to evaluate my web development skills. While I could have banged out something very simple, very quickly, I decided to treat this as an actual “real world” project, to demonstrate not just what I can do, but how I work.
 
 ### Direction from Client:
 
@@ -33,16 +33,16 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 
 * The folder /src/ref/ contains the reference files from the client: a text file with the instructions above, and a layered Photoshop comp.
 
-* I set up source (`/src`), development (`/dev`) and production (`/dist`) folders. `gulp watch` is used to lint and process Sass and JavaScript (with sourcemaps, cos that's just how I roll), and to push `/src` assets to the correct folders. `gulp dist` minifies/uglifies CSS and JS, and pushes to the production folder, ready for deployment.
+* I set up source (`/src`), development (`/dev`) and production (`/dist`) folders. `gulp watch` is used to lint and process Sass and JavaScript (with sourcemaps, cos that’s just how I roll), and to push `/src` assets to the correct folders. `gulp dist` minifies/uglifies CSS and JS, and pushes to the production folder, ready for deployment.
 
-* Although the comp shows only a fixed 800px width, it *is* 2016, so I made the page responsive. Below 720px, the form and list are stacked vertically; between 720px and 1024px, they're displayed side by side, per the comp, in a fluid-width layout; above 1024px, the width is fixed and centered in the browser.
+* Although the comp shows only a fixed 800px width, this *is* 2016, so I made the page responsive for mobile devices. Below 720px, the form and list are stacked vertically; between 720px and 1024px, they’re displayed side by side, per the comp, in a fluid-width layout; above 1024px, the width is fixed and centered in the browser.
 
-* The only third party code I used was normalize.css, because I used it on *all* projects. It's not a framework, it just sands off some painful edges between rendering engines, making cross-browser rendering somewhat more sane.
+* The only third party code I used was normalize.css, because I use it on *all* projects. It’s not a framework, it’s a simple “reset” that just sands off some painful edges between rendering engines, making cross-browser rendering somewhat more sane.
 
-* In order to write this as if it was a typical AJAX app (as it would be in the Real World), I wrote a quick 'n' dirty "emulator" to handle fake XMLHttpRequest calls locally. Modifying the app to use actual server data would be as simple as changing one call name. Easy peasy lemon squeezy. Just fer grins, I might update it to use Local Storage instead…
+* In order to write this as if it was a typical AJAX app (as it would be in the Real World), I wrote a quick ‘n’ dirty “simulator” to handle fake XMLHttpRequest calls locally. Modifying the app to use actual server data would be as simple as changing one call name. Easy peasy lemon squeezy. Just fer grins, I might update it to use Local Storage instead…
 
-* The code is pretty heavily commented, for your amusement, bemusement, hopefully not confusement, and perhaps enlightenment. I also left in a bunch of console.log() statements; try the site with the console active, to see what's going on under the hood in excruciating detail.
+* The code is pretty heavily commented, for your amusement, bemusement, hopefully not confusement, and perhaps enlightenment. I also left in a bunch of `console.log()` statements; try the site with the console active, and you can watch what’s going on under the hood in excruciating detail.
 
-* I didn't write form validation code; it's simple enough, the built-in HTML 'required' attribute seems sufficient. 
+* I didn’t write form validation code; the site is simple enough, the built-in HTML `required` attribute seems sufficient. 
 
-* Likewise, I didn't go as far as writing unit tests. Like the form validation, I might do it if I have some time to kill.
+* Likewise, I didn’t write unit tests. Like the form validation, I might do it if I have some time to kill.
