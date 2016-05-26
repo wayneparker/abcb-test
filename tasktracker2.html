@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Tracker</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+
+		/**
+		 * Test Exercise for Abercrombie.com
+		 *
+		 * Created by Wayne Parker on 5/22/16
+		 */
+
+		/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
+		/**
+		 * 1. Change the default font family in all browsers (opinionated).
+		 * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
+		 */
+		html {
+			font-family: sans-serif;
+			/* 1 */
+			-ms-text-size-adjust: 100%;
+			/* 2 */
+			-webkit-text-size-adjust: 100%;
+			/* 2 */ }
+
+		/**
+		 * Remove the margin in all browsers (opinionated).
+		 */
+		body {
+			margin: 0; }
+
+		/* HTML5 display definitions
+			 ========================================================================== */
+		/**
+		 * Add the correct display in IE 9-.
+		 * 1. Add the correct display in Edge, IE, and Firefox.
+		 * 2. Add the correct display in IE.
+		 */
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		main,
+		menu,
+		nav,
+		section,
+		summary {
+			/* 1 */
+			display: block; }
+
+		/**
+		 * Add the correct display in IE 9-.
+		 */
+		audio,
+		canvas,
+		progress,
+		video {
+			display: inline-block; }
+
+		/**
+		 * Add the correct display in iOS 4-7.
+		 */
+		audio:not([controls]) {
+			display: none;
+			height: 0; }
+
+		/**
+		 * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+		 */
+		progress {
+			vertical-align: baseline; }
+
+		/**
+		 * Add the correct display in IE 10-.
+		 * 1. Add the correct display in IE.
+		 */
+		template,
+		[hidden] {
+			display: none; }
+
+		/* Links
+			 ========================================================================== */
+		/**
+		 * 1. Remove the gray background on active links in IE 10.
+		 * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+		 */
+		a {
+			background-color: transparent;
+			/* 1 */
+			-webkit-text-decoration-skip: objects;
+			/* 2 */ }
+
+		/**
+		 * Remove the outline on focused links when they are also active or hovered
+		 * in all browsers (opinionated).
+		 */
+		a:active,
+		a:hover {
+			outline-width: 0; }
+
+		/* Text-level semantics
+			 ========================================================================== */
+		/**
+		 * 1. Remove the bottom border in Firefox 39-.
+		 * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+		 */
+		abbr[title] {
+			border-bottom: none;
+			/* 1 */
+			text-decoration: underline;
+			/* 2 */
+			text-decoration: underline dotted;
+			/* 2 */ }
+
+		/**
+		 * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+		 */
+		b,
+		strong {
+			font-weight: inherit; }
+
+		/**
+		 * Add the correct font weight in Chrome, Edge, and Safari.
+		 */
+		b,
+		strong {
+			font-weight: bolder; }
+
+		/**
+		 * Add the correct font style in Android 4.3-.
+		 */
+		dfn {
+			font-style: italic; }
+
+		/**
+		 * Correct the font size and margin on `h1` elements within `section` and
+		 * `article` contexts in Chrome, Firefox, and Safari.
+		 */
+		h1 {
+			font-size: 2em;
+			margin: 0.67em 0; }
+
+		/**
+		 * Add the correct background and color in IE 9-.
+		 */
+		mark {
+			background-color: #ff0;
+			color: #000; }
+
+		/**
+		 * Add the correct font size in all browsers.
+		 */
+		small {
+			font-size: 80%; }
+
+		/**
+		 * Prevent `sub` and `sup` elements from affecting the line height in
+		 * all browsers.
+		 */
+		sub,
+		sup {
+			font-size: 75%;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline; }
+
+		sub {
+			bottom: -0.25em; }
+
+		sup {
+			top: -0.5em; }
+
+		/* Embedded content
+			 ========================================================================== */
+		/**
+		 * Remove the border on images inside links in IE 10-.
+		 */
+		img {
+			border-style: none; }
+
+		/**
+		 * Hide the overflow in IE.
+		 */
+		svg:not(:root) {
+			overflow: hidden; }
+
+		/* Grouping content
+			 ========================================================================== */
+		/**
+		 * 1. Correct the inheritance and scaling of font size in all browsers.
+		 * 2. Correct the odd `em` font sizing in all browsers.
+		 */
+		code,
+		kbd,
+		pre,
+		samp {
+			font-family: monospace, monospace;
+			/* 1 */
+			font-size: 1em;
+			/* 2 */ }
+
+		/**
+		 * Add the correct margin in IE 8.
+		 */
+		figure {
+			margin: 1em 40px; }
+
+		/**
+		 * 1. Add the correct box sizing in Firefox.
+		 * 2. Show the overflow in Edge and IE.
+		 */
+		hr {
+			box-sizing: content-box;
+			/* 1 */
+			height: 0;
+			/* 1 */
+			overflow: visible;
+			/* 2 */ }
+
+		/* Forms
+			 ========================================================================== */
+		/**
+		 * 1. Change font properties to `inherit` in all browsers (opinionated).
+		 * 2. Remove the margin in Firefox and Safari.
+		 */
+		button,
+		input,
+		select,
+		textarea {
+			font: inherit;
+			/* 1 */
+			margin: 0;
+			/* 2 */ }
+
+		/**
+		 * Restore the font weight unset by the previous rule.
+		 */
+		optgroup {
+			font-weight: bold; }
+
+		/**
+		 * Show the overflow in IE.
+		 * 1. Show the overflow in Edge.
+		 */
+		button,
+		input {
+			/* 1 */
+			overflow: visible; }
+
+		/**
+		 * Remove the inheritance of text transform in Edge, Firefox, and IE.
+		 * 1. Remove the inheritance of text transform in Firefox.
+		 */
+		button,
+		select {
+			/* 1 */
+			text-transform: none; }
+
+		/**
+		 * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+		 *    controls in Android 4.
+		 * 2. Correct the inability to style clickable types in iOS and Safari.
+		 */
+		button,
+		html [type="button"],
+		[type="reset"],
+		[type="submit"] {
+			-webkit-appearance: button;
+			/* 2 */ }
+
+		/**
+		 * Remove the inner border and padding in Firefox.
+		 */
+		button::-moz-focus-inner,
+		[type="button"]::-moz-focus-inner,
+		[type="reset"]::-moz-focus-inner,
+		[type="submit"]::-moz-focus-inner {
+			border-style: none;
+			padding: 0; }
+
+		/**
+		 * Restore the focus styles unset by the previous rule.
+		 */
+		button:-moz-focusring,
+		[type="button"]:-moz-focusring,
+		[type="reset"]:-moz-focusring,
+		[type="submit"]:-moz-focusring {
+			outline: 1px dotted ButtonText; }
+
+		/**
+		 * Change the border, margin, and padding in all browsers (opinionated).
+		 */
+		fieldset {
+			border: 1px solid #c0c0c0;
+			margin: 0 2px;
+			padding: 0.35em 0.625em 0.75em; }
+
+		/**
+		 * 1. Correct the text wrapping in Edge and IE.
+		 * 2. Correct the color inheritance from `fieldset` elements in IE.
+		 * 3. Remove the padding so developers are not caught out when they zero out
+		 *    `fieldset` elements in all browsers.
+		 */
+		legend {
+			box-sizing: border-box;
+			/* 1 */
+			color: inherit;
+			/* 2 */
+			display: table;
+			/* 1 */
+			max-width: 100%;
+			/* 1 */
+			padding: 0;
+			/* 3 */
+			white-space: normal;
+			/* 1 */ }
+
+		/**
+		 * Remove the default vertical scrollbar in IE.
+		 */
+		textarea {
+			overflow: auto; }
+
+		/**
+		 * 1. Add the correct box sizing in IE 10-.
+		 * 2. Remove the padding in IE 10-.
+		 */
+		[type="checkbox"],
+		[type="radio"] {
+			box-sizing: border-box;
+			/* 1 */
+			padding: 0;
+			/* 2 */ }
+
+		/**
+		 * Correct the cursor style of increment and decrement buttons in Chrome.
+		 */
+		[type="number"]::-webkit-inner-spin-button,
+		[type="number"]::-webkit-outer-spin-button {
+			height: auto; }
+
+		/**
+		 * 1. Correct the odd appearance in Chrome and Safari.
+		 * 2. Correct the outline style in Safari.
+		 */
+		[type="search"] {
+			-webkit-appearance: textfield;
+			/* 1 */
+			outline-offset: -2px;
+			/* 2 */ }
+
+		/**
+		 * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
+		 */
+		[type="search"]::-webkit-search-cancel-button,
+		[type="search"]::-webkit-search-decoration {
+			-webkit-appearance: none; }
+
+		/**
+		 * Correct the text style of placeholders in Chrome, Edge, and Safari.
+		 */
+		::-webkit-input-placeholder {
+			color: inherit;
+			opacity: 0.54; }
+
+		/**
+		 * 1. Correct the inability to style clickable types in iOS and Safari.
+		 * 2. Change font properties to `inherit` in Safari.
+		 */
+		::-webkit-file-upload-button {
+			-webkit-appearance: button;
+			/* 1 */
+			font: inherit;
+			/* 2 */ }
+		/**
+		 * END normalize.css
+		 */
+
+		/*
+		 *## Styles for Task Tracker v2.0 exercise
+		 *
+		 * Created by Wayne Parker on 5/22/16
+		 */
+
+		html {
+			background-color: #f0f0f0;
+			font: 14px "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+			line-height: 1.2; }
+		html * {
+			box-sizing: border-box;
+			font-size: inherit;
+			font-weight: normal;
+			margin: 0; }
+
+		header section, main section {
+			margin: 0 auto;
+			max-width: 1024px;
+			width: 100%; }
+
+		header {
+			background-color: #e2e2e2; }
+		header section {
+			background-color: #f0f0f0;
+			border: 9px solid #e2e2e2;
+			border-bottom: none;
+			height: 148px;
+			padding: 40px 30px 0; }
+		header section h1 {
+			font: 34px "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+			font-weight: bold;
+			margin-bottom: -3px; }
+		header section p {
+			color: #676767;
+			font: 18px "Arial", "Helvetica Neue", "Helvetica", sans-serif; }
+
+		main {
+			background-color: #f0f0f0;
+			padding-top: 0; }
+		main h2 {
+			font: 1.286em "Georgia", "Constantia", "Times", "Times New Roman", serif; }
+		main section {
+			background-color: white;
+			border: 9px solid #f0f0f0;
+			border-top: none;
+			font-size: 1rem; }
+		main section .task-tracker__list {
+			border-top: 9px solid #f0f0f0; }
+		@media (min-width: 720px) {
+			main section {
+				display: -ms-flexbox;
+				display: flex; }
+			main section .task-tracker__create {
+				border-right: 6px solid #f0f0f0;
+				-ms-flex-preferred-size: 50%;
+				flex-basis: 50%; }
+			main section .task-tracker__list {
+				border: none;
+				-ms-flex-preferred-size: 50%;
+				flex-basis: 50%; } }
+
+		.task-tracker__create {
+			padding: 28px 35px 50px 30px; }
+		.task-tracker__create label {
+			display: block;
+			margin: 28px 0 5px; }
+		.task-tracker__create input {
+			width: 100%;
+			border-radius: 4px;
+			border: 1px solid #dedede;
+			background-color: #ececec;
+			font-size: 1.0em;
+			height: 40px;
+			padding: 0 1em; }
+		.task-tracker__create input:focus {
+			outline: none;
+			box-shadow: 0 0 6px #0066DD; }
+		.task-tracker__create button {
+			background-color: #434343;
+			border: none;
+			border-radius: 4px;
+			color: white;
+			cursor: pointer;
+			font: 18px "Georgia", "Constantia", "Times", "Times New Roman", serif;
+			margin-top: 32px;
+			padding: 0.75em 1.0em; }
+
+		.task-tracker__list {
+			border-top: 9px solid #f0f0f0;
+			padding: 28px 20px 20px 15px; }
+		.task-tracker__list h2 {
+			margin-left: 4px; }
+		.task-tracker__list ul {
+			border: 4px solid #dedede;
+			border-radius: 4px;
+			list-style: none;
+			margin-top: 38px;
+			padding: 2px; }
+		.task-tracker__list ul li {
+			display: block;
+			height: 39px;
+			padding: 13px 16px 0;
+			vertical-align: middle; }
+		.task-tracker__list ul li:nth-child(even) {
+			background-color: #ececec; }
+		.task-tracker__list ul li:not(:last-child) {
+			border-bottom: 1px solid white; }
+		.task-tracker__list ul li .task-name {
+			font: 1em "Georgia", "Constantia", "Times", "Times New Roman", serif; }
+		.task-tracker__list ul li .task-date {
+			font: 0.857em "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+			margin-left: 0.5em; }
+		.task-tracker__list ul li .task-assigned {
+			display: inline-block;
+			float: right;
+			font: 0.857em "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+			font-weight: bold; }
+
+	</style>
+</head>
+<body>
+<header>
+	<section>
+		<h1>Task Tracker</h1>
+		<p>v.2.0</p>
+	</section>
+</header>
+<main>
+	<section>
+		<form class="task-tracker__create">
+			<h2>Create a Task</h2>
+			<label for="task-tracker__name">Task Name</label>
+			<input id="task-tracker__name" type="text" required>
+			<label for="task-tracker__date">Date</label>
+			<input id="task-tracker__date" type="date" required>
+			<label for="task-tracker__assigned">Assigned To</label>
+			<input id="task-tracker__assigned" type="text" required>
+			<button type="submit" id="submit">Submit</button>
+		</form>
+		<div class="task-tracker__list">
+			<h2>Existing Tasks</h2>
+			<ul class="task-list">
+<!--
+				<li>
+					<span class="task-name">Task Name</span>
+					<span class="task-date">12/07/2012</span>
+					<span class="task-assigned">John Doe</span>
+				</li>
+-->
+			</ul>
+		</div>
+	</section>
+
+	<div id="test"></div>
+
+</main>
+<script>
+
+	/**
+	 * Created by Wayne Parker on 5/22/16.
+	 */
+
+	(function () {
+
+		'use strict';
+
+		//
+		//## Initialize globals
+
+		var taskData = {}; // Local task data; will be populated with “server” data by loadJSON()
+		var taskForm = document.querySelector('form.task-tracker__create'); // Reference to task entry form
+		var taskList = document.querySelector('ul.task-list');              // Reference to task list
+
+
+		//
+		//## Main App initialization
+
+		function taskTracker() {
+			taskData = loadData('data.json'); // Get JSON data from (fake) XMLHttpRequest
+			buildList(taskData);              // Convert JSON data to DOM objects, render to HTML
+			window.onsubmit = addTask;        // Set event handler to process form when submitted
+			console.log('Set-up complete, Task Tracker is now running!');
+		}
+
+
+		//
+		//## Get JSON data from (fake) XMLHttpRequest, store in local taskData object
+
+		function loadData(url) {
+
+			var serverData = {};
+			var request = new XMLHttpRequestFAKE();
+			request.open('GET', url, true);
+
+			request.onload = function() {
+				if (this.status >= 200 && this.status < 400) {
+					// Success!
+					serverData = JSON.parse(this.response);
+					console.log ('status: ' + this.statusText); // TESTING
+					console.log ('response: ' + this.response); // TESTING
+					console.log ('parsed response as Object:'); // TESTING
+					console.log (serverData); // TESTING
+				} else {
+					window.alert('The server responded with an error. JSON data not loaded.');
+				}
+			};
+
+			request.onerror = function() {
+				window.alert('The server did not respond. JSON data not loaded.');
+			};
+
+			request.send();
+
+			return serverData;
+		}
+
+
+		//
+		//## Convert JSON data to list items, insert into DOM
+
+		function buildList(tasks) {
+			var ul = taskList;
+			var li;
+			// OK, docFrag is totally overkill for such a simple exercise, but hey, I’m a professional
+			var frag = document.createDocumentFragment();
+			// Create DOM elements for each task, append to documentFragment to avoid multiple DOM repaints
+			for (var i = 0; i < tasks.length; i++) {
+				li = createListItem(tasks[i].name, tasks[i].date, tasks[i].assigned);
+				frag.appendChild(li);
+			}
+			// Update the DOM all at once, because performance!
+			ul.appendChild(frag);
+			console.log('Finished appending initial tasks to list');
+		}
+
+
+		//
+		//## Create single task DOM element
+
+		function createListItem(name, dateStr, assigned) {
+			var item = document.createElement('li');
+			item.innerHTML =
+				'<span class="task-name">' + name + '</span>' +
+				'<span class="task-date">' + dateStr + '</span>' +
+				'<span class="task-assigned">' + assigned + '</span>' +
+				'</li>\n';
+			console.log('Task DOM element created: ');
+			console.log(item);
+			return item;
+		}
+
+
+		//
+		//## Form Submit, create and add new task to data and DOM
+
+		function addTask(event) {
+
+			event.preventDefault();
+
+			// Get form data and create new task object
+			var name = document.getElementById('task-tracker__name').value;
+			var dateStr = dateFormat(document.getElementById('task-tracker__date').value);
+			var assigned = document.getElementById('task-tracker__assigned').value;
+			var newTask = {
+				'name': name,
+				'date': dateStr,
+				'assigned': assigned
+			};
+			// Prepend object element to taskData
+			taskData.unshift(newTask);
+			console.log('New task added to taskData: ');
+			console.log(newTask);
+
+			// Prepend new DOM element to task list
+			var ul = taskList;
+			var li = createListItem(name, dateStr, assigned);
+			ul.insertBefore(li, ul.firstChild);
+
+			// Reset form
+			taskForm.reset();
+		}
+
+
+		//
+		//## Utility functions
+
+
+		// Coerce date into mm-dd-yyy format string
+		function dateFormat(dateString) {
+			var d = new Date(dateString);
+			var month = d.getMonth() + 1;
+			var day = d.getDate();
+			var year = d.getFullYear();
+			return month + "/" + day + "/" + year;
+		}
+
+
+		//
+		//## Initialize when document is loaded
+
+		// ($(document).ready() is a crutch. Just let go.)
+
+		function ready(init) {
+			if (document.readyState != 'loading'){
+				init();
+			} else {
+				document.addEventListener('DOMContentLoaded', init);
+			}
+		}
+
+		ready( taskTracker() );
+
+
+		//
+		//######### Do not look below. It is not the code you are looking for.
+		//
+
+
+		//
+		//## XMLHttpRequestFAKE - Emulate AJAX behavior without a remote server
+		//
+
+		function XMLHttpRequestFAKE() {
+
+			// Data provided by client for exercise:
+			var fakeJSON =
+				[
+					{"name": "Test Task #1", "date": "12/01/2012", "assigned": "John Doe" },
+					{"name": "Test Task #2", "date": "12/02/2012", "assigned": "John Doe" },
+					{"name": "Test Task #3", "date": "12/03/2012", "assigned": "John Doe" },
+					{"name": "Test Task #4", "date": "12/04/2012", "assigned": "John Doe" },
+					{"name": "Test Task #5", "date": "12/05/2012", "assigned": "John Doe" },
+					{"name": "Test Task #6", "date": "12/06/2012", "assigned": "John Doe" },
+					{"name": "Test Task #7", "date": "12/07/2012", "assigned": "John Doe" }
+				];
+
+			return {
+				onreadystatechange: function() { },
+				onload: function() { },
+				onerror: function() { },
+				readyState: 0,
+				response: null,
+				responseText: null,
+				responseXML: null,
+				responseType: '',
+				mimeType: 'text/text',
+				status: 0,
+				statusText: '',
+
+				abort: function() {
+					// nothing to do, ignore
+				},
+
+				open: function( method, url, async ) {
+					// nothing to do, just log the call
+					console.log('XMLHttpRequestFAKE.open(\'' + method + '\', \'' + url + '\', ' + async + '\')');
+				},
+
+				send: function() {
+					// Just Do It
+					this.status = 200;
+					this.statusText = '200 OK';
+					// convert data into text stream
+					this.response = JSON.stringify(fakeJSON);
+					this.responseText = this.response;
+					this.readyState = 4;
+					// All done, fire callbacks
+					this.onreadystatechange();
+					this.onload();
+					// Th-th-that’s all, folks!
+				},
+
+				overrideMimeType: function(newMimeType) {
+					this.mimeType = newMimeType; // not used
+				}
+
+			};
+		}
+
+	})();
+
+</script>
+</body>
+</html>

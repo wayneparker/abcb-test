@@ -31,6 +31,8 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 
 ### Notes
 
+* If you really don’t want to see how the sausage gets made, there’s a single-page version of the exercise at the root, `tasktracker2.html`. Simply open it in a browser for the full Task Tracker experience.
+
 * The folder /src/ref/ contains the reference files from the client: a text file with the instructions above, and a layered Photoshop comp.
 
 * I set up source (`/src`), development (`/dev`) and production (`/dist`) folders. `gulp watch` is used to lint and process Sass and JavaScript (with sourcemaps, cos that’s just how I roll), and to push `/src` assets to the correct folders. `gulp dist` minifies/uglifies CSS and JS, and pushes to the production folder, ready for deployment.
