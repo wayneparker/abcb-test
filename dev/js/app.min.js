@@ -18,9 +18,9 @@
 	//## Main App initialization
 
 	function taskTracker() {
-		loadJSON();                // Get JSON data from (fake) XMLHttpRequest
-		buildList(taskData);       // Convert JSON data to DOM objects, render to HTML
-		window.onsubmit = addTask; // Set up event handler to process form when submitted
+		taskData = loadData('data.json'); // Get JSON data from (fake) XMLHttpRequest
+		buildList(taskData);              // Convert JSON data to DOM objects, render to HTML
+		window.onsubmit = addTask;        // Set event handler to process form when submitted
 					console.log('Set-up complete, Task Tracker is now running!');
 	}
 
@@ -28,28 +28,32 @@
 	//
 	//## Get JSON data from (fake) XMLHttpRequest, store in local taskData object
 
-	function loadJSON() {
+	function loadData(url) {
 
+		var serverData = {};
 		var request = new XMLHttpRequestFAKE();
-		request.open('GET', 'data.json', true);
+		request.open('GET', url, true);
 
 		request.onload = function() {
 			if (this.status >= 200 && this.status < 400) {
 				// Success!
-				taskData = JSON.parse(this.response);
+				serverData = JSON.parse(this.response);
 							console.log ('status: ' + this.statusText); // TESTING
 							console.log ('response: ' + this.response); // TESTING
 							console.log ('parsed response as Object:'); // TESTING
-							console.log (taskData); // TESTING
+							console.log (serverData); // TESTING
 			} else {
 				window.alert('The server responded with an error. JSON data not loaded.');
 			}
 		};
+
 		request.onerror = function() {
 			window.alert('The server did not respond. JSON data not loaded.');
 		};
 
 		request.send();
+
+		return serverData;
 	}
 
 
@@ -59,7 +63,7 @@
 	function buildList(tasks) {
 		var ul = taskList;
 		var li;
-		// OK, docFrag is totally overkill for such a simple exercise, but hey, I'm a professional
+		// OK, docFrag is totally overkill for such a simple exercise, but hey, I’m a professional
 		var frag = document.createDocumentFragment();
 		// Create DOM elements for each task, append to documentFragment to avoid multiple DOM repaints
 		for (var i = 0; i < tasks.length; i++) {
@@ -122,6 +126,8 @@
 	//
 	//## Utility functions
 
+
+	// Coerce date into mm-dd-yyy format string
 	function dateFormat(dateString) {
 		var d = new Date(dateString);
 		var month = d.getMonth() + 1;
@@ -133,6 +139,8 @@
 
 	//
 	//## Initialize when document is loaded
+
+	// ($(document).ready() is a crutch. Just let go.)
 
 	function ready(init) {
 		if (document.readyState != 'loading'){
