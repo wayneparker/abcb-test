@@ -1,5 +1,8 @@
 /**
- * Created by Wayne Parker on 5/22/16.
+ * Task Tracker v2.0
+ * Test Exercise for ABCB
+ *
+ * Created by Wayne Parker on 5/22/16
  */
 
 (function () {
@@ -9,7 +12,7 @@
 	//
 	//## Initialize globals
 
-	var taskData = {}; // Local task data; will be populated with “server” data by loadJSON()
+	var taskData = {}; // Local task data; will be populated with “server” data by loadData()
 	var taskForm = document.querySelector('form.task-tracker__create'); // Reference to task entry form
 	var taskList = document.querySelector('ul.task-list');              // Reference to task list
 
