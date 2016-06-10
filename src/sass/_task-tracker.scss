@@ -1,0 +1,25 @@
+/* ============================================================================
+   APP -> TASK TRACKER
+   ========================================================================= */
+
+/**
+ * Task Tracker variables and styles
+ *
+ * @author
+ * Wayne Parker
+ *
+ * @created
+ * 2016-06-10
+ *
+ *
+ */
+
+
+$form__element-radius: 4px;
+$form__top-spacing: 28px;
+$form__list-frame: 4px;
+$form__frame-color: #dedede;
+$form__elem-bg: #ececec;
+
+@import 'task-form';
+@import 'task-list';

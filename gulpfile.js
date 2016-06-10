@@ -12,7 +12,6 @@ var gulp =         require('gulp');
 // General
 var changed =      require('gulp-changed');
 var concat =       require('gulp-concat');
-var flatten =      require('gulp-flatten');
 var git =          require('gulp-git');
 var rimraf =       require('gulp-rimraf');
 
@@ -60,7 +59,6 @@ gulp.task('git-add', function () {
 gulp.task('files', function () {
 	return gulp.src(sourcePath + filePath + '**/*')
 		.pipe(changed(devPath))
-		//.pipe(flatten()) // Disable for this project
 		.pipe(gulp.dest(devPath + filePath));
 });
 
@@ -68,7 +66,6 @@ gulp.task('files', function () {
 // Fonts - Copies web font assets to dev folder
 gulp.task('fonts', function () {
 	return gulp.src(sourcePath + fontPath + '**/*')
-		//.pipe(flatten()) // Disable for this project
 		.pipe(gulp.dest(devPath + fontPath));
 });
 
@@ -76,7 +73,6 @@ gulp.task('fonts', function () {
 // Images - Copies image assets to dev folder
 gulp.task('images', function () {
 	return gulp.src(sourcePath + imagePath + '**/*')
-		//.pipe(flatten()) // Disable for this project
 		.pipe(gulp.dest(devPath + imagePath));
 });
 
@@ -84,7 +80,6 @@ gulp.task('images', function () {
 // Pages - Copies HTML pages to dev folder
 gulp.task('pages', function () {
 	return gulp.src(sourcePath + '**/*.html')
-		//.pipe(flatten()) // Disable for this project
 		.pipe(gulp.dest(devPath));
 });
 
@@ -116,9 +111,9 @@ gulp.task('jshint', function () {
 		.pipe(jshint.reporter('fail'));
 });
 
-// Vendor scripts - Concat vendors scripts
+// Vendor scripts - Concat vendor scripts
 gulp.task('scripts-vendor', function () {
-	return gulp.src(vendorPath + '**/*.js')
+	return gulp.src(vendorPath + '**/*.css')
 		.pipe(sourcemaps.init())
 		.pipe(concat('vendor.min.js'))
 		.pipe(sourcemaps.write('./'))

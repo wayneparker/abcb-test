@@ -1,17 +1,30 @@
-//
-//## Global Variables
-//
-// Created by wayne on 5/22/16
+/* ============================================================================
+   APP > VARIABLES
+   ========================================================================= */
 
-//
-//## Fonts
+/**
+ * Global Variables
+ *
+ * @author
+ * Wayne Parker <wayne@wparker.io>
+ *
+ * @created
+ * 2016-06-10
+ *
+ *
+ */
+
+/**
+ * Font Stacks
+ */
 
 $font_sans: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
 $font_serif: 'Georgia', 'Constantia', 'Times', 'Times New Roman', serif;
 
 
-//
-//## Color Palette
+/**
+ * Color Palette
+ */
 
 $color_body: #f0f0f0;
 
@@ -24,8 +37,9 @@ $color_main-bg: $color_body;
 $color_main: white;
 
 
-//
-//## Responsive Breakpoints
+/**
+ * Responsive Breakpoints
+ */
 
-$screen_mobile-max: 720px;
-$screen_desktop-max: 1024px;
+$screen_mobile-max: 720px;   // input form and list stack vertically on smaller screens
+$screen_desktop-max: 1024px; // above 1024, page is fixed width and centered

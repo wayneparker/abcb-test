@@ -1,0 +1,64 @@
+/* ============================================================================
+   APP -> TASK LIST
+   ========================================================================= */
+
+/**
+ * Style the task list per the provided comp.
+ *
+ * @author
+ * Wayne Parker
+ *
+ * @created
+ * 2016-06-10
+ *
+ *
+ */
+
+.task-tracker__list {
+	border-top: $frame-width solid $color_main-bg; // only when stacked
+	padding: $form__top-spacing 20px 20px 15px;    // per comp; align top with input form
+
+	h2 {
+		margin-left: $form__list-frame; // Offset to line up with list content, not frame, per comp
+	}
+
+	ul {
+		border: $form__list-frame solid $form__frame-color;
+		border-radius: $form__list-frame; // thought I'd miss this one, din't ya?
+		list-style: none;
+		margin-top: 38px; // align with top of form content, per comp
+		padding: 2px;     // inset between border and list elements
+
+		li {
+			display: block;
+			height: 39px;
+			padding: 13px 16px 0;
+			vertical-align: middle;
+
+			// Alternating color bars
+			&:nth-child(even) {
+				background-color: $form__elem-bg;
+			}
+
+			&:not(:last-child) {
+				border-bottom: 1px solid white; // Thought I'd miss this one, din't ya?
+			}
+
+			.task-name {
+				font: 1.0em $font_serif;
+			}
+
+			.task-date {
+				font: 0.857em $font_sans;
+				margin-left: 0.5em; // space between name and date
+			}
+
+			.task-assigned {
+				display: inline-block;
+				float: right;
+				font: 0.857em $font_sans;
+				font-weight: bold;
+			}
+		}
+	}
+}

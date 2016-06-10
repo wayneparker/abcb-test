@@ -1,190 +1,29 @@
+/* ============================================================================
+   APP
+   ========================================================================= */
+
 /**
- *## Styles for Task Tracker v2.0 exercise
+ * Styles for Task Tracker v2.0 exercise
+ * =====================================
  *
- * Created by Wayne Parker on 5/22/16
+ * @author
+ * Wayne Parker <wayne@wparker.io>
+ *
+ * @created
+ * 5/22/2016
+ *
+ *
  */
 
-//
-//## Imports
+/**
+ * Imports
+ * -------
+ */
 
-@import 'normalize';
-@import 'variables';
-//@import 'fonts';  // Not worth breaking out
-//@import 'colors'; // Not worth breaking out
-
-
-//
-//## Scaffolding
-
-html {
-	background-color: $color_body;
-	font: 14px $font_sans; // Base Font Size
-	line-height: 1.2;
-
-	& * {
-		// Additional element resets
-		box-sizing: border-box;
-		font-size: inherit;
-		font-weight: normal;
-		margin: 0;
-	}
-}
-
-%body__layout {
-	margin: 0 auto; // center horizontally
-	max-width: $screen_desktop-max; // fixed width on larger screens
-	width: 100%;
-}
-
-$frame-width: 9px;
-$flex-gutter: 6px;
-
-header {
-	background-color: $color_header-bg;
-
-	section {
-		@extend %body__layout;
-		background-color: $color_header;
-		border: $frame-width solid $color_header-bg;
-		border-bottom: none;
-		height: 148px;
-		padding: 40px 30px 0;
-
-		h1 {
-			font: 34px $font_sans;
-			font-weight: bold;
-			margin-bottom: -3px; // tight!
-		}
-
-		p {
-			color: $color_text-secondary;
-			font: 18px $font_sans;
-		}
-	}
-}
-
-main {
-	background-color: $color_main-bg;
-	padding-top: 0;
-
-	h2 {
-		font: 1.286em $font_serif;
-	}
-
-	section {
-		@extend %body__layout;
-		background-color: $color_main;
-		border: $frame-width solid $color_main-bg;
-		border-top: none;
-		font-size: 1rem;
-
-		.task-tracker__list {
-			border-top: $frame-width solid $color_main-bg;
-		}
-
-		@media (min-width: $screen_mobile-max) {
-			display: flex;
-			.task-tracker__create {
-				border-right: $flex-gutter solid $color_main-bg;
-				flex-basis: 50%;
-			}
-			.task-tracker__list {
-				border: none;
-				flex-basis: 50%;
-			}
-		}
-
-	}
-
-}
-
-$form__element-radius: 4px;
-$form__top-spacing: 28px;
-$form__list-frame: 4px;
-$form__frame-color: #dedede;
-$form__elem-bg: #ececec;
-
-.task-tracker__create {
-	padding: $form__top-spacing 35px 50px 30px;
-
-	label {
-		display: block;
-		margin: $form__top-spacing 0 5px;
-	}
-
-	input {
-		width: 100%;
-		border-radius: $form__element-radius;
-		border: 1px solid $form__frame-color;
-		background-color: $form__elem-bg;
-		font-size: 1.0em;
-		height: 40px;
-		padding: 0 1em;
-		&:focus {
-			//border-color: #0066DD;
-			outline: none; // override use agent style
-			box-shadow: 0 0 6px #0066DD;
-		}
-	}
-
-	button {
-		background-color: #434343;
-		border: none;
-		border-radius: $form__element-radius;
-		color: white;
-		cursor: pointer;
-		font: 18px $font_serif;
-		margin-top: $form__top-spacing + 4px;
-		padding: 0.75em 1.0em;
-	}
-
-}
-
-.task-tracker__list {
-	border-top: $frame-width solid $color_main-bg; // Only when stacked
-	padding: $form__top-spacing 20px 20px 15px;
-
-	h2 {
-		margin-left: $form__list-frame; // Offset to line up with list content, not frame, per comp
-	}
-
-	ul {
-		border: $form__list-frame solid $form__frame-color;
-		border-radius: $form__list-frame;
-		list-style: none;
-		margin-top: 38px;
-		padding: 2px;
-
-		li {
-			display: block;
-			height: 39px;
-			padding: 13px 16px 0;
-			vertical-align: middle;
-
-			&:nth-child(even) { // Alternating color bars
-				background-color: $form__elem-bg;
-			}
-
-			&:not(:last-child) {
-				border-bottom: 1px solid white;
-			}
-
-			.task-name {
-				font: 1.0em $font_serif;
-			}
-
-			.task-date {
-				font: 0.857em $font_sans;
-				margin-left: 0.5em;
-			}
-
-			.task-assigned {
-				display: inline-block;
-				float: right;
-				font: 0.857em $font_sans;
-				font-weight: bold;
-			}
-		}
-	}
-}
+@import 'normalize';    // minimize cross-browser rendering quirks
+@import 'variables';    // global Sass values
+//@import 'fonts';      // not worth breaking out for this project
+//@import 'colors';     // not worth breaking out for this project
+@import 'main';         // page layout, including responsive layout
+@import 'task-tracker'; // task input form and task list styles
 

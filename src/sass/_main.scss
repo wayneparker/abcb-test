@@ -1,0 +1,113 @@
+/* ============================================================================
+   APP > MAIN
+   ========================================================================= */
+
+/**
+ * Page Layout
+ *
+ * @author
+ * Wayne Parker <wayne@wparker.io>
+ *
+ * @created
+ * 2016-06-10
+ *
+ *
+ */
+
+html {
+	background-color: $color_body;
+	font: 14px $font_sans; // Base Font Size
+	line-height: 1.2;      // good default value; NOT specified in the comp, but should be
+
+	& * {
+		// Additional global element resets - normalize.css isn't enough
+		box-sizing: border-box; // screw you, W3C, this is how it always SHOULD have been
+		font-size: inherit;     // no surprises
+		font-weight: normal;    // override UA defaults
+		margin: 0;              // no surprises
+	}
+}
+
+
+/**
+ * Page Styles
+ */
+
+// common layout for header / body / footer (if we had one)
+%body__layout {
+	margin: 0 auto;                 // center horizontally; only applies to larger screens
+	max-width: $screen_desktop-max; // fixed width on larger screens
+	width: 100%;                    // full width on smaller screens
+}
+
+$frame-width: 9px; // borders used to create box-in-box effect, per comp, without additional wrapper elements
+$flex-gutter: 6px; // per comp
+
+header {
+	background-color: $color_header-bg;
+
+	section {
+		@extend %body__layout;
+		background-color: $color_header;
+		border: $frame-width solid $color_header-bg;
+		border-bottom: none;
+		height: 148px;
+		padding: 40px 30px 0;
+
+		h1 {
+			font: 34px $font_sans;
+			font-weight: bold;
+			margin-bottom: -3px; // keep it tight!
+		}
+
+		p {
+			color: $color_text-secondary;
+			font: 18px $font_sans;
+		}
+	}
+}
+
+main {
+	background-color: $color_main-bg;
+	padding-top: 0;
+
+	h2 {
+		font: 1.286em $font_serif;
+	}
+
+
+/**
+ * Page Content - Responsive layout
+ *
+ * Task Input Form and Task List are stacked vertically on smaller screens, side-by-side on mid-sized screens,
+ * and limited to 1024px and centered on large screens.
+ */
+
+	section {
+		@extend %body__layout;
+		background-color: $color_main;
+		border: $frame-width solid $color_main-bg;
+		border-top: none;
+		font-size: 1rem;
+
+		.task-tracker__list {
+			border-top: $frame-width solid $color_main-bg;
+		}
+
+		// on larger screens, use flex-box to position form and list side-by-side
+		@media (min-width: $screen_mobile-max) {
+			display: flex;
+			.task-tracker__create {
+				border-right: $flex-gutter solid $color_main-bg; // gutter between elements when side-by-side
+				flex-basis: 50%;
+			}
+			.task-tracker__list {
+				border: none;  // remove top border when side-by-side
+				flex-basis: 50%;
+			}
+		}
+
+	}
+
+}
+
