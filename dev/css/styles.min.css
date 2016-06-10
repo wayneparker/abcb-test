@@ -399,12 +399,22 @@ textarea {
  */
 /**
  * Font Stacks
+ *
+ * All per [/ref/design.psd] unless otherwise specified
+ *
  */
 /**
  * Color Palette
+ *
+ * All per [/ref/design.psd] unless otherwise specified
+ *
  */
 /**
  * Responsive Breakpoints
+ *
+ * Comp [/ref/design.psd] only showed a fixed width of 800px;
+ * I used my best judgement to make it responsive on mobile and desktop screens
+ *
  */
 /* ============================================================================
    APP > MAIN
@@ -499,11 +509,16 @@ main {
  *
  *
  */
+/**
+ * Variables
+ *
+ * Per comp [/ref/design.psd] unless otherwise specified
+ */
 /* ============================================================================
    APP -> TASK FORM
    ========================================================================= */
 /**
- * Style the task input form per the provided comp.
+ * Style the task input form per the provided comp [/ref/design.psd].
  *
  * @author
  * Wayne Parker
@@ -543,7 +558,7 @@ main {
    APP -> TASK LIST
    ========================================================================= */
 /**
- * Style the task list per the provided comp.
+ * Style the task list per the provided comp [/ref/design.psd].
  *
  * @author
  * Wayne Parker

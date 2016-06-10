@@ -17,14 +17,14 @@
 html {
 	background-color: $color_body;
 	font: 14px $font_sans; // Base Font Size
-	line-height: 1.2;      // good default value; NOT specified in the comp, but should be
+	line-height: 1.2;      // Good default value; NOT specified in the comp, but should be
 
 	& * {
 		// Additional global element resets - normalize.css isn't enough
-		box-sizing: border-box; // screw you, W3C, this is how it always SHOULD have been
-		font-size: inherit;     // no surprises
-		font-weight: normal;    // override UA defaults
-		margin: 0;              // no surprises
+		box-sizing: border-box; // Screw you, W3C, this is how it always SHOULD have been
+		font-size: inherit;     // No surprises
+		font-weight: normal;    // Override UA defaults
+		margin: 0;              // No surprises
 	}
 }
 
@@ -33,15 +33,15 @@ html {
  * Page Styles
  */
 
-// common layout for header / body / footer (if we had one)
+// Common layout for header / body / footer (if we had one)
 %body__layout {
-	margin: 0 auto;                 // center horizontally; only applies to larger screens
-	max-width: $screen_desktop-max; // fixed width on larger screens
-	width: 100%;                    // full width on smaller screens
+	margin: 0 auto;                 // Center horizontally; only applies to larger screens
+	max-width: $screen_desktop-max; // Fixed width on larger screens
+	width: 100%;                    // Full width on smaller screens
 }
 
-$frame-width: 9px; // borders used to create box-in-box effect, per comp, without additional wrapper elements
-$flex-gutter: 6px; // per comp
+$frame-width: 9px; // Borders used to create box-in-box effect, per [/ref/design.psd], without additional wrapper elements
+$flex-gutter: 6px; // Per comp [/ref/design.psd]
 
 header {
 	background-color: $color_header-bg;
@@ -57,7 +57,7 @@ header {
 		h1 {
 			font: 34px $font_sans;
 			font-weight: bold;
-			margin-bottom: -3px; // keep it tight!
+			margin-bottom: -3px; // Keep it tight per comp [/ref/design.psd]
 		}
 
 		p {
@@ -94,15 +94,15 @@ main {
 			border-top: $frame-width solid $color_main-bg;
 		}
 
-		// on larger screens, use flex-box to position form and list side-by-side
+		// On larger screens, use flex-box to position form and list side-by-side
 		@media (min-width: $screen_mobile-max) {
 			display: flex;
 			.task-tracker__create {
-				border-right: $flex-gutter solid $color_main-bg; // gutter between elements when side-by-side
+				border-right: $flex-gutter solid $color_main-bg; // Gutter between elements when side-by-side
 				flex-basis: 50%;
 			}
 			.task-tracker__list {
-				border: none;  // remove top border when side-by-side
+				border: none;  // Remove top border when side-by-side
 				flex-basis: 50%;
 			}
 		}

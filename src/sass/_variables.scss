@@ -16,6 +16,9 @@
 
 /**
  * Font Stacks
+ *
+ * All per [/ref/design.psd] unless otherwise specified
+ *
  */
 
 $font_sans: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -24,6 +27,9 @@ $font_serif: 'Georgia', 'Constantia', 'Times', 'Times New Roman', serif;
 
 /**
  * Color Palette
+ *
+ * All per [/ref/design.psd] unless otherwise specified
+ *
  */
 
 $color_body: #f0f0f0;
@@ -39,6 +45,10 @@ $color_main: white;
 
 /**
  * Responsive Breakpoints
+ *
+ * Comp [/ref/design.psd] only showed a fixed width of 800px;
+ * I used my best judgement to make it responsive on mobile and desktop screens
+ *
  */
 
 $screen_mobile-max: 720px;   // input form and list stack vertically on smaller screens

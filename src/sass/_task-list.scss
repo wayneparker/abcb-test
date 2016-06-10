@@ -3,7 +3,7 @@
    ========================================================================= */
 
 /**
- * Style the task list per the provided comp.
+ * Style the task list per the provided comp [/ref/design.psd].
  *
  * @author
  * Wayne Parker
@@ -15,19 +15,19 @@
  */
 
 .task-tracker__list {
-	border-top: $frame-width solid $color_main-bg; // only when stacked
-	padding: $form__top-spacing 20px 20px 15px;    // per comp; align top with input form
+	border-top: $frame-width solid $color_main-bg; // Only when stacked
+	padding: $form__top-spacing 20px 20px 15px;    // Per [/ref/design.psd]; align top with input form
 
 	h2 {
-		margin-left: $form__list-frame; // Offset to line up with list content, not frame, per comp
+		margin-left: $form__list-frame; // Offset to line up with list content, not frame, per [/ref/design.psd]
 	}
 
 	ul {
 		border: $form__list-frame solid $form__frame-color;
 		border-radius: $form__list-frame; // thought I'd miss this one, din't ya?
 		list-style: none;
-		margin-top: 38px; // align with top of form content, per comp
-		padding: 2px;     // inset between border and list elements
+		margin-top: 38px; // Align with top of form content, per comp
+		padding: 2px;     // Inset between border and list elements
 
 		li {
 			display: block;
@@ -50,7 +50,7 @@
 
 			.task-date {
 				font: 0.857em $font_sans;
-				margin-left: 0.5em; // space between name and date
+				margin-left: 0.5em; // Add space between name and date
 			}
 
 			.task-assigned {

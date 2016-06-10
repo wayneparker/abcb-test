@@ -3,7 +3,7 @@
    ========================================================================= */
 
 /**
- * Style the task input form per the provided comp.
+ * Style the task input form per the provided comp [/ref/design.psd].
  *
  * @author
  * Wayne Parker
@@ -27,12 +27,12 @@
 		border-radius: $form__element-radius;
 		border: 1px solid $form__frame-color;
 		background-color: $form__elem-bg;
-		font-size: 1.0em; // override pesky UA styles
+		font-size: 1.0em; // Override pesky UA styles
 		height: 40px;
 		padding: 0 1em;
 		&:focus {
-			outline: none; // override UA style
-			box-shadow: 0 0 6px #0066DD; // highlight active field
+			outline: none; // Override UA style
+			box-shadow: 0 0 6px #0066DD; // Highlight active field
 		}
 	}
 
