@@ -20,10 +20,12 @@
  * -------
  */
 
-@import 'normalize';    // minimize cross-browser rendering quirks
-@import 'variables';    // global Sass values
-//@import 'fonts';      // not worth breaking out for this project
-//@import 'colors';     // not worth breaking out for this project
-@import 'main';         // page layout, including responsive layout
-@import 'task-tracker'; // task input form and task list styles
+// Minimize cross-browser rendering quirks
+@import 'normalize';
+// Global Sass values
+@import 'variables';
+// Page layout, including responsive layout
+@import 'main';
+// Task input form and task list styles
+@import 'task-tracker';
 
