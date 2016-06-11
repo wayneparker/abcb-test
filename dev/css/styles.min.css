@@ -542,7 +542,7 @@ main {
     padding: 0 1em; }
     .task-tracker__create input:focus {
       outline: none;
-      box-shadow: 0 0 6px #0066DD; }
+      box-shadow: 0 0 6px #0066dd; }
   .task-tracker__create button {
     background-color: #434343;
     border: none;
