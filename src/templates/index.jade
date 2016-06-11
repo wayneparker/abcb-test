@@ -2,6 +2,12 @@
 
 extend _layouts/_base
 
+block params
+	- var title = 'Task Tracker 2.0'
+	- var desc = 'A front-end coding exercise for ABCB'
+	- var hed = 'Task Tracker'
+	- var deck = 'v.2.0'
+
 block content
 	include _components/_task-tracker
 
