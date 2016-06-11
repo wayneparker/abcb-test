@@ -1,0 +1,15 @@
+//- _base.jade - Defines the base layout for site pages.
+
+include ../_mixins/_head
+include ../_mixins/_header
+include ../_mixins/_footer
+
+doctype html
+html(lang='en')
+  +head('Task Tracker 2.0', 'A front-end coding exercise for ABCB')
+  body
+    +header('Task Tracker', 'v.2.0')
+    main
+      block content
+    +footer
+

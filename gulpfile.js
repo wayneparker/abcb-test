@@ -19,6 +19,9 @@ var changed = require('gulp-changed');
 var concat = require('gulp-concat');
 var util = require('gulp-util');
 
+// Templates
+var jade = require('gulp-jade');
+
 // Styles
 var autoprefixer = require('gulp-autoprefixer');
 var cleancss = require('gulp-clean-css');
@@ -47,6 +50,7 @@ var
 	vendor = 'bower_components'
 	;
 var paths = {
+	templates: src + '/templates',
 	vendor: {
 		styles: [
 			vendor + '/normalize-css/normalize.css'//,
@@ -65,8 +69,8 @@ var paths = {
 			sass: [
 				src + '/styles/**/*.sass',
 				src + '/styles/**/*.scss'
-			],
-			less:    src + '/styles/**/*.less'
+			]//,
+			//less:    src + '/styles/**/*.less'
 		},
 		css:       src + '/css',
 		scripts: {
@@ -78,8 +82,7 @@ var paths = {
 		//img:       src + '/img',
 		//docs:      src + '/docs',
 		//fonts:     src + '/fonts',
-		//media:     src + '/media',
-		//templates: src + '/templates'
+		//media:     src + '/media'
 	},
 
 	dev: {
@@ -107,9 +110,22 @@ var paths = {
 //
 // ## Task Definitions
 
-// HTML files
+// HTML Templates
 
 // This is where we’d compile templates into HTML, if we were rockin’ Jade or whatever
+// Soooooo… Why don’t we add Jade?
+gulp.task('jade', function() {
+	return gulp.src([paths.templates + '/**/*.jade', '!**/_*.jade'])
+	.pipe(jade({
+				pretty: '\t'
+			})
+			.on('error', function (e) {
+				console.log(e);
+			})
+		)
+		.pipe(gulp.dest(paths.src.root));
+		//.pipe(gulp.dest(productionFlag ? paths.prod.root : paths.dev.root));
+});
 
 // push static / compiled HTML to Staging
 gulp.task('html', function() {

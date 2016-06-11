@@ -77,7 +77,7 @@ html {
 /**
  * Page Styles
  */
-header section, main section {
+header section, main section, footer {
   margin: 0 auto;
   max-width: 1024px;
   width: 100%; }
@@ -125,6 +125,12 @@ main {
         main section .task-tracker__list {
           -ms-flex-preferred-size: 50%;
               flex-basis: 50%; } }
+
+footer {
+  border: 9px solid #f0f0f0;
+  color: rgba(103, 103, 103, 0.3);
+  font-size: 0.67rem;
+  text-align: right; }
 
 /* ============================================================================
    APP -> TASK TRACKER

@@ -1,0 +1,19 @@
+section
+  form.task-tracker__create
+    h2 Create a Task
+    label(for='task-tracker__name') Task Name
+    input#task-tracker__name(type='text', required='')
+    label(for='task-tracker__date') Date
+    input#task-tracker__date(type='date', required='')
+    label(for='task-tracker__assigned') Assigned To
+    input#task-tracker__assigned(type='text', required='')
+    button#submit(type='submit') Submit
+  .task-tracker__list
+    h2 Existing Tasks
+    ul.task-list
+      // Sample Task Markup
+        <li>
+        <span class="task-name">Task Name</span>
+        <span class="task-date">12/07/2012</span>
+        <span class="task-assigned">John Doe</span>
+        </li>

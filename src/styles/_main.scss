@@ -112,3 +112,10 @@ main {
 
 }
 
+footer {
+	@extend %body__layout;
+	border: $frame-width solid $color_main-bg;
+	color: rgba($color_text-secondary, 0.3);
+	font-size: 0.67rem;
+	text-align: right;
+}
