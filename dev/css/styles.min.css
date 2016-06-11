@@ -480,18 +480,14 @@ main {
     border: 9px solid #f0f0f0;
     border-top: none;
     font-size: 1rem; }
-    main section .task-tracker__list {
-      border-top: 9px solid #f0f0f0; }
     @media (min-width: 720px) {
       main section {
         display: -ms-flexbox;
         display: flex; }
         main section .task-tracker__create {
-          border-right: 6px solid #f0f0f0;
           -ms-flex-preferred-size: 50%;
               flex-basis: 50%; }
         main section .task-tracker__list {
-          border: none;
           -ms-flex-preferred-size: 50%;
               flex-basis: 50%; } }
 
@@ -530,6 +526,9 @@ main {
  */
 .task-tracker__create {
   padding: 28px 35px 50px 30px; }
+  @media (min-width: 720px) {
+    .task-tracker__create {
+      border-right: 6px solid #f0f0f0; } }
   .task-tracker__create label {
     display: block;
     margin: 28px 0 5px; }
@@ -571,6 +570,9 @@ main {
 .task-tracker__list {
   border-top: 9px solid #f0f0f0;
   padding: 28px 20px 20px 15px; }
+  @media (min-width: 720px) {
+    .task-tracker__list {
+      border-top: none; } }
   .task-tracker__list h2 {
     margin-left: 4px; }
   .task-tracker__list ul {

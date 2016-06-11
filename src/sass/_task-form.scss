@@ -15,7 +15,12 @@
  */
 
 .task-tracker__create {
+	// Align top with task list, per [/ref/design.psd]
 	padding: $form__top-spacing 35px 50px 30px;
+	@media (min-width: $screen_mobile-max) {
+		// Gutter between elements when side-by-side
+		border-right: $flex-gutter solid $color_main-bg;
+	}
 
 	label {
 		display: block;
@@ -35,12 +40,12 @@
 			// Override UA style
 			outline: none;
 			// Highlight active field
-			box-shadow: 0 0 6px #0066DD;
+			box-shadow: 0 0 6px $form__highlight;
 		}
 	}
 
 	button {
-		background-color: #434343;
+		background-color: $form__button-color;
 		border: none;
 		border-radius: $form__element-radius;
 		color: white;
