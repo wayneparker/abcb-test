@@ -384,12 +384,34 @@
 		 ========================================================================== */
 
 
-		/*
-		 *## Styles for Task Tracker v2.0 exercise
+		/* ============================================================================
+			 APP
+			 ========================================================================= */
+		/**
+		 * Styles for Task Tracker v2.0 exercise
+		 * =====================================
 		 *
-		 * Created by Wayne Parker on 5/22/16
+		 * @author
+		 * Wayne Parker <wayne@wparker.io>
+		 *
+		 * @created
+		 * 5/22/2016
 		 */
 
+		/* ============================================================================
+			 APP > MAIN
+			 ========================================================================= */
+		/**
+		 * Page Layout
+		 *
+		 * @author
+		 * Wayne Parker <wayne@wparker.io>
+		 *
+		 * @created
+		 * 2016-06-10
+		 *
+		 *
+		 */
 		html {
 			background-color: #f0f0f0;
 			font: 14px "Arial", "Helvetica Neue", "Helvetica", sans-serif;
@@ -400,6 +422,9 @@
 			font-weight: normal;
 			margin: 0; }
 
+		/**
+		 * Page Styles
+		 */
 		header section, main section {
 			margin: 0 auto;
 			max-width: 1024px;
@@ -423,7 +448,14 @@
 
 		main {
 			background-color: #f0f0f0;
-			padding-top: 0; }
+			padding-top: 0;
+
+			/**
+		 * Page Content - Responsive layout
+		 *
+		 * Task Input Form and Task List are stacked vertically on smaller screens, side-by-side on mid-sized screens,
+		 * and limited to 1024px and centered on large screens.
+		 */ }
 		main h2 {
 			font: 1.286em "Georgia", "Constantia", "Times", "Times New Roman", serif; }
 		main section {
@@ -431,23 +463,37 @@
 			border: 9px solid #f0f0f0;
 			border-top: none;
 			font-size: 1rem; }
-		main section .task-tracker__list {
-			border-top: 9px solid #f0f0f0; }
 		@media (min-width: 720px) {
 			main section {
+				display: -webkit-box;
 				display: -ms-flexbox;
 				display: flex; }
 			main section .task-tracker__create {
-				border-right: 6px solid #f0f0f0;
 				-ms-flex-preferred-size: 50%;
 				flex-basis: 50%; }
 			main section .task-tracker__list {
-				border: none;
 				-ms-flex-preferred-size: 50%;
 				flex-basis: 50%; } }
 
+		/* ============================================================================
+			 APP -> TASK FORM
+			 ========================================================================= */
+		/**
+		 * Style the task input form per the provided comp [/ref/design.psd].
+		 *
+		 * @author
+		 * Wayne Parker
+		 *
+		 * @created
+		 * 2016-06-10
+		 *
+		 *
+		 */
 		.task-tracker__create {
 			padding: 28px 35px 50px 30px; }
+		@media (min-width: 720px) {
+			.task-tracker__create {
+				border-right: 6px solid #f0f0f0; } }
 		.task-tracker__create label {
 			display: block;
 			margin: 28px 0 5px; }
@@ -461,7 +507,7 @@
 			padding: 0 1em; }
 		.task-tracker__create input:focus {
 			outline: none;
-			box-shadow: 0 0 6px #0066DD; }
+			box-shadow: 0 0 6px #0066dd; }
 		.task-tracker__create button {
 			background-color: #434343;
 			border: none;
@@ -472,9 +518,26 @@
 			margin-top: 32px;
 			padding: 0.75em 1.0em; }
 
+		/* ============================================================================
+			 APP -> TASK LIST
+			 ========================================================================= */
+		/**
+		 * Style the task list per the provided comp [/ref/design.psd].
+		 *
+		 * @author
+		 * Wayne Parker
+		 *
+		 * @created
+		 * 2016-06-10
+		 *
+		 *
+		 */
 		.task-tracker__list {
 			border-top: 9px solid #f0f0f0;
 			padding: 28px 20px 20px 15px; }
+		@media (min-width: 720px) {
+			.task-tracker__list {
+				border-top: none; } }
 		.task-tracker__list h2 {
 			margin-left: 4px; }
 		.task-tracker__list ul {
