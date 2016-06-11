@@ -1,210 +1,270 @@
 /**
  * Gulp Configuration
  *
- * Created by wayne on 5/22/16
+ * @author
+ * Wayne Parker <wayne@wparker.io>
+ *
+ * @created
+ * 5/22/16
  */
 
-//
-//## Module init
+'use strict';
 
-var gulp =         require('gulp');
+//
+// ## Imports
 
 // General
-var changed =      require('gulp-changed');
-var concat =       require('gulp-concat');
-var git =          require('gulp-git');
-var rimraf =       require('gulp-rimraf');
+var gulp = require('gulp');
+var changed = require('gulp-changed');
+var concat = require('gulp-concat');
+var util = require('gulp-util');
 
 // Styles
 var autoprefixer = require('gulp-autoprefixer');
-var minifycss =    require('gulp-minify-css');
-var sass =         require('gulp-sass');
+var cleancss = require('gulp-clean-css');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Scripts
-var jshint =       require('gulp-jshint');
-var sourcemaps =   require('gulp-sourcemaps');
-var uglify =       require('gulp-uglify');
+//var babel = require('gulp-babel');
+var eslint = require('gulp-eslint');
+var uglify = require('gulp-uglify');
+var vendorJS = require('gulp-concat-vendor');
 
-//
-//## Paths
+// Images
+//var imagemin = require('gulp-imagemin');
 
-var sourcePath = 'src/';
-var vendorPath = 'bower_components/';
-var devPath =    'dev/';
-var filePath =   'files/';
-var fontPath =   'fonts/';
-var imagePath =  'img/';
-var scriptPath = 'js/';
-var stylePath =  'css/';
-var distPath =   'dist/';
+// Environment
+var productionFlag = !!util.env.production; // `gulp --production` flag
 
 
 //
-//## Gulp tasks
-// Run 'gulp -T' for a task summary
+// ## Paths
+var
+	src =  'src',
+	dev =  'dev',
+	prod = 'dist',
+	vendor = 'bower_components'
+	;
+var paths = {
+	vendor: {
+		styles: [
+			vendor + '/normalize-css/normalize.css'//,
+			// vendor + '/bootstrap-sass/assets/stylesheets/_bootstrap.scss'
+			// etc. add as needed
+		],
+		scripts: [
+			// vendor + '/jquery/dist/jquery.js',
+			// vendor + '/bootstrap-sass/assets/javascripts/bootstrap.js'
+			// etc. add as needed
+		]
+	},
+	src: {
+		root:      src,
+		styles: {
+			sass: [
+				src + '/styles/**/*.sass',
+				src + '/styles/**/*.scss'
+			],
+			less:    src + '/styles/**/*.less'
+		},
+		css:       src + '/css',
+		scripts: {
+			js:      src + '/scripts/**/*.js'//,
+			//coffee:  src + '/scripts/**/*.coffee'
+		},
+		js:        src + '/js',
+		images:    src + '/images'//,
+		//img:       src + '/img',
+		//docs:      src + '/docs',
+		//fonts:     src + '/fonts',
+		//media:     src + '/media',
+		//templates: src + '/templates'
+	},
 
+	dev: {
+		root:      dev,
+		css:       dev + '/css',
+		js:        dev + '/js'//,
+		//img:       dev + '/img',
+		//docs:      dev + '/docs',
+		//fonts:     dev + '/fonts',
+		//media:     dev + '/media'
+	},
 
-//## Git Add
-// 'gulp git-add' - Adds any newly generated files to the git repo
-gulp.task('git-add', function () {
-	return gulp.src(devPath)
-		.pipe(git.add());
-});
+	prod: {
+		root:     prod,
+		css:      prod + '/css',
+		js:       prod + '/js'//,
+		//img:      prod + '/img',
+		//docs:     prod + '/docs',
+		//fonts:    prod + '/fonts',
+		//media:    prod + '/media'
+	}
+};
 
 
 //
-//## Static Assets
+// ## Task Definitions
 
-// Files - Copies binary file assets to dev folder
-gulp.task('files', function () {
-	return gulp.src(sourcePath + filePath + '**/*')
-		.pipe(changed(devPath))
-		.pipe(gulp.dest(devPath + filePath));
+// HTML files
+
+// This is where we’d compile templates into HTML, if we were rockin’ Jade or whatever
+
+// push static / compiled HTML to Staging
+gulp.task('html', function() {
+	return gulp.src(paths.src.root + '/**/*.html')
+		.pipe(gulp.dest(productionFlag ? paths.prod.root : paths.dev.root));
 });
 
 
-// Fonts - Copies web font assets to dev folder
-gulp.task('fonts', function () {
-	return gulp.src(sourcePath + fontPath + '**/*')
-		.pipe(gulp.dest(devPath + fontPath));
-});
+// Styles
 
-
-// Images - Copies image assets to dev folder
-gulp.task('images', function () {
-	return gulp.src(sourcePath + imagePath + '**/*')
-		.pipe(gulp.dest(devPath + imagePath));
-});
-
-
-// Pages - Copies HTML pages to dev folder
-gulp.task('pages', function () {
-	return gulp.src(sourcePath + '**/*.html')
-		.pipe(gulp.dest(devPath));
-});
-
-
-// Static - Copy all static assets to dev folder
-gulp.task('static', ['files', 'fonts', 'images', 'pages']);
-
-
-//## Scripts
-
-// Script Clean - Clean out old script build files
-gulp.task('scripts-clean', function() {
-	return gulp.src([
-		devPath + scriptPath + '**/*.js',
-		devPath + scriptPath + '**/*.js.map'
-	])
-		.pipe(rimraf());
-});
-
-// JSHint - Lints configuration JSON and project JS.
-gulp.task('jshint', function () {
-	return gulp.src([
-		'bower.json',
-		'gulpfile.js',
-		sourcePath + scriptPath + '**/*.js'
-	])
-		.pipe(jshint())
-		.pipe(jshint.reporter('default'))
-		.pipe(jshint.reporter('fail'));
-});
-
-// Vendor scripts - Concat vendor scripts
-gulp.task('scripts-vendor', function () {
-	return gulp.src(vendorPath + '**/*.css')
+// compile application sass/scss source to `styles.CSS`
+gulp.task('styles-sass', function() {
+	return gulp.src(paths.src.styles.sass)
 		.pipe(sourcemaps.init())
-		.pipe(concat('vendor.min.js'))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(devPath + scriptPath));
+		.pipe(sass().on('error', sass.logError))
+		.pipe(concat('styles.css'))
+		.pipe(autoprefixer(['> 1%', 'last 2 versions', 'Firefox ESR']))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.src.css));
+});
+// we could do the same for Less source, if that’s your jam
+
+// collect vendor stylesheets into `vendor.CSS`
+gulp.task('styles-vendor', function() {
+	return gulp.src(paths.vendor.styles)
+		.pipe(concat('vendor.css'))
+		.pipe(gulp.dest(paths.src.css));
 });
 
-// App scripts - Concat and deploy project scripts to development
-gulp.task('scripts', ['jshint', 'scripts-vendor'], function () {
-	return gulp.src( sourcePath + scriptPath + '**/*.js' )
+// push `styles.min.CSS` to Staging or Production
+gulp.task('css-app', ['styles-sass'], function() {
+	return gulp.src(paths.src.css + '/styles.css')
+		.pipe(productionFlag ? util.noop() : sourcemaps.init()) // no sourcemaps in Production
+		.pipe(concat('styles.min.css')) // not really a concat, just renaming the file
+		.pipe(cleancss())
+		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(productionFlag ? paths.prod.css : paths.dev.css));
+});
+
+// push `vendor.min.CSS` to Staging or Production
+gulp.task('css-vendor', ['styles-vendor'], function() {
+	return gulp.src(paths.src.css + '/vendor.css')
+		.pipe(concat('vendor.min.css')) // not really a concat, just renaming the file
+		.pipe(cleancss())
+		.pipe(gulp.dest(productionFlag ? paths.prod.css : paths.dev.css));
+});
+
+// ALL Style Tasks
+gulp.task('styles', ['css-app', 'css-vendor']);
+
+
+// Scripts
+
+// lint JS source with ESLint
+gulp.task('lint', function () {
+	return gulp.src([
+		paths.src.scripts.js,
+		'gulpfile.js' // add any other JS-format config files as needed
+	])
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
+});
+
+// compile & concat JS / ES6 source to `app.JS` (ES5)
+gulp.task('scripts-compile', ['lint'], function() {
+	return gulp.src(paths.src.scripts.js)
 		.pipe(sourcemaps.init())
+		.pipe(babel({ presets: ['es2015'] }))
+		.pipe(concat('app.js'))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.src.js))
+});
+
+// collect vendor scripts into `vendor.JS`
+/* Disable for now
+ gulp.task('scripts-vendor', function() {
+ return gulp.src(paths.vendor.scripts)
+ .pipe(sourcemaps.init())
+ .pipe(concat('vendor.js'))
+ .pipe(sourcemaps.write('.'))
+ .pipe(gulp.dest(paths.src.js));
+ });*/
+// Let's try gulp-vendor-concat instead: https://github.com/patrickpietens/gulp-concat-vendor
+gulp.task('scripts-vendor', function() {
+	return gulp.src(paths.vendor.scripts)
+		.pipe(sourcemaps.init())
+		.pipe(vendorJS('vendor.js'))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.src.js));
+});
+
+// push `app.min.JS` to Staging or Production
+gulp.task('js-app', ['scripts-compile'], function() {
+	return gulp.src([
+		paths.src.js + '/app.js'
+	])
+		.pipe(productionFlag ? util.noop() : sourcemaps.init()) // no sourcemaps in Production
 		.pipe(concat('app.min.js'))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(devPath + scriptPath));
+		.pipe(uglify())
+		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(productionFlag ? paths.prod.js : paths.dev.js));
 });
 
-
-//## Styles
-
-// Clean Styles - Clean out old styles build files
-gulp.task('styles-clean', function() {
+// push `vendor.min.JS` to Staging or Production
+gulp.task('js-vendor', ['scripts-vendor'], function() {
 	return gulp.src([
-		devPath + stylePath + '**/*.css',
-		devPath + stylePath + '**/*.css.map'
+		paths.src.js + '/vendor.js'
 	])
-		.pipe(rimraf());
+		.pipe(productionFlag ? util.noop() : sourcemaps.init()) // no sourcemaps in Production
+		.pipe(concat('vendor.min.js'))
+		.pipe(uglify())
+		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(productionFlag ? paths.prod.js : paths.dev.js));
 });
 
-// Build Styles - Compiles, combines, and optimizes Bower CSS and project CSS.
-gulp.task('styles', function () {
-	return gulp.src([
-		sourcePath + 'sass/**/*'
-	])
-		.pipe(sourcemaps.init())
-		.pipe(sass({ style: 'compressed' }))
-		.pipe(autoprefixer('last 2 versions'))
-		.pipe(concat('styles.min.css'))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(devPath + stylePath));
+// ALL Script Tasks
+gulp.task('scripts', ['js-app', 'js-vendor']);
+
+
+// Images
+
+// optimize images that have changed
+gulp.task('images-opt', function() {
+	return gulp.src(paths.src.images + '/**/*')
+		.pipe(changed(paths.src.img, {hasChanged: changed.compareSha1Digest}))
+		.pipe(gulp.dest(paths.src.img));
 });
+
+// push changed images that to Staging or Production
+gulp.task('images', ['images-opt'], function() {
+	return gulp.src(paths.src.img + '/**/*')
+		.pipe(changed(productionFlag ? paths.prod.img : paths.dev.img, {hasChanged: changed.compareSha1Digest}))
+		.pipe(gulp.dest(productionFlag ? paths.prod.img : paths.dev.img));
+});
+
+// Static Assets
+
+// TODO: tasks to push other static assets (docs, fonts, img, media, etc.) (CHANGED ONLY)
 
 
 //
-//## Dist - Build site to dist folder for deployment
+// ## Watch for Changes
 
-// Publish Static Assets
-gulp.task('dist-static', function () {
-	return gulp.src([
-		devPath + '**/*.html',
-		devPath + filePath +  '**/*',
-		devPath + fontPath +  '**/*',
-		devPath + imagePath + '**/*'
-	])
-		.pipe(gulp.dest(distPath));
-});
-
-// Publish Scripts
-gulp.task('dist-scripts', function () {
-	return gulp.src([
-		devPath + scriptPath + 'vendor.min.js',
-		devPath + scriptPath + 'app.min.js'
-	])
-		.pipe(sourcemaps.init())
-		.pipe(uglify())
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(distPath + scriptPath));
-});
-
-// Publish Styles
-gulp.task('dist-styles', function () {
-	return gulp.src([
-		devPath + stylePath + 'styles.min.css'
-	])
-		.pipe(sourcemaps.init())
-		.pipe(minifycss())
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(distPath + stylePath));
-});
-
-//## Publish All to Dist
-gulp.task('dist', ['dist-static', 'dist-scripts', 'dist-styles']);
-
-
-//## Watch - Run gulp tasks as source files are changed
 gulp.task('watch', function () {
-	gulp.watch([sourcePath + '**/*.html'],          ['pages']);
-	gulp.watch([sourcePath + filePath + '**.*'],    ['files']);
-	gulp.watch([sourcePath + fontPath + '**.*'],    ['fonts']);
-	gulp.watch([sourcePath + imagePath + '**.*'],   ['images']);
-	gulp.watch([sourcePath + 'sass/**.*'],          ['styles']);
-	gulp.watch([sourcePath + scriptPath + '**.*'],  ['scripts']);
+	gulp.watch(paths.src.root + '/**/*.html', ['html']);
+	gulp.watch(paths.src.styles.sass, ['css-app']);
+	gulp.watch(paths.src.css + '/**/*.css', ['css-app']);
+	gulp.watch(paths.src.scripts.js, ['js-app']);
+	gulp.watch(paths.src.js + '/**/*.js', ['js-app']);
+	gulp.watch(paths.src.images + '/**/*', ['images']);
+	gulp.watch(paths.src.img + '/**/*', ['images']);
 });
 
 
-gulp.task('default', ['pages', 'files', 'fonts', 'images', 'styles', 'scripts']);
+gulp.task('default', ['html', 'styles', 'scripts'], function() {
+	// additional code for any default task here… or not.
+});
