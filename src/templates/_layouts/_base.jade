@@ -4,11 +4,15 @@ include ../_mixins/_head
 include ../_mixins/_header
 include ../_mixins/_footer
 
+block params
+- var title = 'Task Tracker 2.0'
+- var desc = 'A front-end coding exercise for ABCB'
+
 doctype html
 html(lang='en')
-  +head('Task Tracker 2.0', 'A front-end coding exercise for ABCB')
+  +head(title, desc)
   body
-    +header('Task Tracker', 'v.2.0')
+    +header(hed, deck)
     main
       block content
     +footer

@@ -2,6 +2,10 @@
 
 extend _layouts/_base
 
+block append params
+	- var hed = 'Task Tracker'
+	- var deck = 'v.2.0'
+
 block content
 	include _components/_task-tracker
 
