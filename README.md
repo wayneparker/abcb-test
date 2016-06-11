@@ -1,5 +1,16 @@
 # ABCB Test Exercise: Task Tracker v2.0
 
+Rev. 1.1.0 • 2016-06-10
+
+* Refactored the Sass files into atomic modules
+* Updated `.gulpfile` to a more full-featured version from a recent project
+* Added more thorough, consistent comments to source files
+
+Rev 0.0.1 • 2016-05-26
+
+* Added single-page version (`/tasktracker2.html`)
+* Miscellaneous code clean-up and commenting
+
 Initial release • 2016-05-25
 
 I was tasked with this exercise in order to evaluate my web development skills. While I could have banged out something very simple, very quickly, I decided to treat this as an actual “real world” project, to demonstrate not just what I can do, but how I work.
@@ -7,14 +18,14 @@ I was tasked with this exercise in order to evaluate my web development skills. 
 ### Direction from Client:
 
 >	Requirements
->	
+>
 >	* Should load the data below into the existing data section on page load.
 >	* Should have the ability to create tasks that will immediately be prepended to the list.
 >	* Should not require a web server, and should be able to run offline.
 >	* Match the design as close as possible.
 >	* All data exchanges should be in JSON format.
 >	* IMPORTANT: This must be completed using jQuery or vanilla Javascript - no other JS frameworks may be used.  Also, do not use any CSS frameworks (e.g. Bootstrap)
->	
+>
 >	Existing Data (JSON)
 >
 		[
@@ -45,6 +56,6 @@ Basically, a simplified version of the classic TodoMVC in vanilla JS.
 
 * The code is pretty heavily commented, for your amusement, bemusement, hopefully not confusement, and perhaps enlightenment. I also left in a bunch of `console.log()` statements; try the site with the console active, and you can watch what’s going on under the hood in excruciating detail.
 
-* I didn’t write form validation code; the site is simple enough, the built-in HTML `required` attribute seems sufficient. 
+* I didn’t write form validation code; the site is simple enough, the built-in HTML `required` attribute seems sufficient.
 
 * Likewise, I didn’t write unit tests. Like the form validation, I might do it if I have some time to kill.
