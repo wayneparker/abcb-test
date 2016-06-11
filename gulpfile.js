@@ -5,7 +5,7 @@
  * Wayne Parker <wayne@wparker.io>
  *
  * @created
- * 6/10/16
+ * 5/22/16
  */
 
 'use strict';
@@ -125,7 +125,7 @@ gulp.task('html', function() {
 			})
 		)
 		.pipe(gulp.dest(paths.src.root))//;
-		// push static / compiled HTML to Staging
+		// push compiled HTML to Staging
 		.pipe(gulp.dest(productionFlag ? paths.prod.root : paths.dev.root));
 });
 
@@ -144,14 +144,15 @@ gulp.task('styles-sass', function() {
 });
 // we could do the same for Less source, if that’s your jam
 
-// clean and push `styles.min.CSS` to Staging or Production
 gulp.task('css-app', ['styles-sass'], function() {
+	// clean `styles.CSS` to `styles.min.CSS`
 	return gulp.src(paths.src.css + '/styles.css')
 		.pipe(productionFlag ? util.noop() : sourcemaps.init({loadMaps: true})) // no sourcemaps in Production
 		.pipe(concat('styles.min.css')) // not really a concat, just renaming the file
 		.pipe(cleancss())
 		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.src.css))
+		// push `styles.min.css` to Staging or Production
 		.pipe(gulp.dest(productionFlag ? paths.prod.css : paths.dev.css));
 });
 
@@ -162,12 +163,13 @@ gulp.task('styles-vendor', function() {
 		.pipe(gulp.dest(paths.src.css));
 });
 
-// clean and push `vendor.min.CSS` to Staging or Production
+// clean `vendor.css` to `vendor.min.CSS`
 gulp.task('css-vendor', ['styles-vendor'], function() {
 	return gulp.src(paths.src.css + '/vendor.css')
 		.pipe(concat('vendor.min.css')) // not really a concat, just renaming the file
 		.pipe(cleancss())
 		.pipe(gulp.dest(paths.src.css))
+		// push `vendor.min.CSS` to Staging or Production
 		.pipe(gulp.dest(productionFlag ? paths.prod.css : paths.dev.css));
 });
 
@@ -192,13 +194,25 @@ gulp.task('lint', function () {
 gulp.task('scripts-compile', ['lint'], function() {
 	return gulp.src(paths.src.scripts.js)
 		.pipe(sourcemaps.init())
-		//.pipe(babel({ presets: ['es2015'] }))
+		//.pipe(babel({ presets: ['es2015'] })) // not today!
 		.pipe(concat('app.js'))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.src.js));
 });
 
-// collect vendor scripts into `vendor.JS`
+// minify `app.js` to `app.min.JS`
+gulp.task('js-app', ['scripts-compile'], function() {
+	return gulp.src(paths.src.js + '/app.js')
+		.pipe(productionFlag ? util.noop() : sourcemaps.init({loadMaps: true})) // no sourcemaps in Production
+		.pipe(concat('app.min.js'))
+		.pipe(uglify())
+		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.src.js))
+		// push `app.min.JS` to Staging or Production
+		.pipe(gulp.dest(productionFlag ? paths.prod.js : paths.dev.js));
+});
+
+// collect vendor scripts, AND dependencies, in order, into `vendor.JS`
 gulp.task('scripts-vendor', function() {
 	return gulp.src(paths.vendor.scripts)
 		.pipe(sourcemaps.init())
@@ -207,24 +221,9 @@ gulp.task('scripts-vendor', function() {
 		.pipe(gulp.dest(paths.src.js));
 });
 
-// push `app.min.JS` to Staging or Production
-gulp.task('js-app', ['scripts-compile'], function() {
-	return gulp.src([
-		paths.src.js + '/app.js'
-	])
-		.pipe(productionFlag ? util.noop() : sourcemaps.init({loadMaps: true})) // no sourcemaps in Production
-		.pipe(concat('app.min.js'))
-		.pipe(uglify())
-		.pipe(productionFlag ? util.noop() : sourcemaps.write('.'))
-		.pipe(gulp.dest(paths.src.js))
-		.pipe(gulp.dest(productionFlag ? paths.prod.js : paths.dev.js));
-});
-
 // push `vendor.min.JS` to Staging or Production
 gulp.task('js-vendor', ['scripts-vendor'], function() {
-	return gulp.src([
-		paths.src.js + '/vendor.js'
-	])
+	return gulp.src(paths.src.js + '/vendor.js')
 		.pipe(productionFlag ? util.noop() : sourcemaps.init({loadMaps: true})) // no sourcemaps in Production
 		.pipe(concat('vendor.min.js'))
 		.pipe(uglify())
@@ -255,20 +254,17 @@ gulp.task('images', ['images-opt'], function() {
 
 // Static Assets
 
-// TODO: tasks to push other static assets (docs, fonts, img, media, etc.) (CHANGED ONLY)
+// Here we would have tasks to push other static assets (docs, fonts, img, media, etc.), but we don’t have any!
 
 
 //
 // ## Watch for Changes
 
 gulp.task('watch', function () {
-	gulp.watch(paths.src.templates + '/**/*', ['html']);
+	gulp.watch(paths.src.root + '/templates/**/*', ['html']);
 	gulp.watch(paths.src.styles.sass, ['css-app']);
-	gulp.watch(paths.src.css + '/**/*.css', ['css-app']);
 	gulp.watch(paths.src.scripts.js, ['js-app']);
-	gulp.watch(paths.src.js + '/**/*.js', ['js-app']);
-	gulp.watch(paths.src.images + '/**/*', ['images']);
-	gulp.watch(paths.src.img + '/**/*', ['images']);
+	//gulp.watch(paths.src.images + '/**/*', ['images']);
 });
 
 

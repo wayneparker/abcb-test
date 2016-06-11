@@ -129,8 +129,7 @@ main {
 footer {
   border: 9px solid #f0f0f0;
   color: rgba(103, 103, 103, 0.3);
-  font-size: 0.67rem;
-  text-align: right; }
+  font-size: 0.67rem; }
 
 /* ============================================================================
    APP -> TASK TRACKER
