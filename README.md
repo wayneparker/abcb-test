@@ -1,5 +1,11 @@
 # ABCB Test Exercise: Task Tracker v2.0
 
+Rev. 1.1.1 • 2016-06-11
+
+* Added Jade, converted HTML file into nested Jade templates
+* Improved `.gulpfile` watches and scripts
+* Added minified CSS and JS files to /src; don’t really need /dev anymore
+
 Rev. 1.1.0 • 2016-06-10
 
 * Refactored the Sass files into atomic modules
