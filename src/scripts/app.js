@@ -240,5 +240,3 @@
 	}
 
 })();
-
-//# sourceMappingURL=app.js.map

@@ -50,12 +50,12 @@ var paths = {
 	vendor: {
 		styles: [
 			vendor + '/normalize-css/normalize.css'//,
-			// vendor + '/bootstrap-sass/assets/stylesheets/_bootstrap.scss'
+			// vendor + '/bootstrap-styles/assets/stylesheets/_bootstrap.scss'
 			// etc. add as needed
 		],
 		scripts: [
 			// vendor + '/jquery/dist/jquery.js',
-			// vendor + '/bootstrap-sass/assets/javascripts/bootstrap.js'
+			// vendor + '/bootstrap-styles/assets/javascripts/bootstrap.js'
 			// etc. add as needed
 		]
 	},
@@ -73,8 +73,8 @@ var paths = {
 			js:      src + '/scripts/**/*.js'//,
 			//coffee:  src + '/scripts/**/*.coffee'
 		},
-		js:        src + '/js',
-		images:    src + '/images'//,
+		js:        src + '/js'//,
+		//images:    src + '/images',
 		//img:       src + '/img',
 		//docs:      src + '/docs',
 		//fonts:     src + '/fonts',
@@ -120,7 +120,7 @@ gulp.task('html', function() {
 
 // Styles
 
-// compile application sass/scss source to `styles.CSS`
+// compile application styles/scss source to `styles.CSS`
 gulp.task('styles-sass', function() {
 	return gulp.src(paths.src.styles.sass)
 		.pipe(sourcemaps.init())
@@ -178,22 +178,13 @@ gulp.task('lint', function () {
 gulp.task('scripts-compile', ['lint'], function() {
 	return gulp.src(paths.src.scripts.js)
 		.pipe(sourcemaps.init())
-		.pipe(babel({ presets: ['es2015'] }))
+		//.pipe(babel({ presets: ['es2015'] }))
 		.pipe(concat('app.js'))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.src.js))
 });
 
 // collect vendor scripts into `vendor.JS`
-/* Disable for now
- gulp.task('scripts-vendor', function() {
- return gulp.src(paths.vendor.scripts)
- .pipe(sourcemaps.init())
- .pipe(concat('vendor.js'))
- .pipe(sourcemaps.write('.'))
- .pipe(gulp.dest(paths.src.js));
- });*/
-// Let's try gulp-vendor-concat instead: https://github.com/patrickpietens/gulp-concat-vendor
 gulp.task('scripts-vendor', function() {
 	return gulp.src(paths.vendor.scripts)
 		.pipe(sourcemaps.init())
