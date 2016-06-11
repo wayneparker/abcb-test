@@ -15,9 +15,13 @@
  */
 
 .task-tracker__list {
-	// Top border; only when stacked
+	// Top border when stacked
 	border-top: $frame-width solid $color_main-bg;
-	// Align top with input form, per [/ref/design.psd]
+	@media (min-width: $screen_mobile-max) {
+		// Remove toip border when side-by-side
+		border-top: none;
+	}
+	// Align top with task form, per [/ref/design.psd]
 	padding: $form__top-spacing 20px 20px 15px;
 
 	h2 {

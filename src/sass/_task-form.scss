@@ -15,7 +15,12 @@
  */
 
 .task-tracker__create {
+	// Align top with task list, per [/ref/design.psd]
 	padding: $form__top-spacing 35px 50px 30px;
+	@media (min-width: $screen_mobile-max) {
+		// Gutter between elements when side-by-side
+		border-right: $flex-gutter solid $color_main-bg;
+	}
 
 	label {
 		display: block;

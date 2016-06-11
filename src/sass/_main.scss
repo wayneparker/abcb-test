@@ -25,7 +25,7 @@ html {
 		// Additional global element resets - normalize.css isn't enough
 		box-sizing: border-box; // Screw you, W3C, this is how it always SHOULD have been
 		font-size: inherit;
-		font-weight: normal;s
+		font-weight: normal;
 		margin: 0;
 	}
 }
@@ -97,21 +97,13 @@ main {
 		border-top: none;
 		font-size: 1rem;
 
-		.task-tracker__list {
-			border-top: $frame-width solid $color_main-bg;
-		}
-
 		// On larger screens, use flex-box to position form and list side-by-side
 		@media (min-width: $screen_mobile-max) {
 			display: flex;
 			.task-tracker__create {
-				// Gutter between elements when side-by-side
-				border-right: $flex-gutter solid $color_main-bg;
 				flex-basis: 50%;
 			}
 			.task-tracker__list {
-				// Remove top border when side-by-side
-				border: none;
 				flex-basis: 50%;
 			}
 		}
